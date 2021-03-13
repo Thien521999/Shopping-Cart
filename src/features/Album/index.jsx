@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AlbumList from './components/AlbumList';
 
 
@@ -28,7 +27,7 @@ function AlbumFeature(props) {
 
     return (
         <div>
-            <h2>Có thể bạn sẽ thích đấy</h2>
+            <h2 style={{textAlign:"center"}}>Có thể bạn sẽ thích đấy</h2>
             <AlbumList albumList={albumList} />
         </div>
     );

@@ -7,13 +7,13 @@ AlbumList.propTypes = {
     albumList: PropTypes.array.isRequired,
 };
 
-function AlbumList({albumList}) {
+function AlbumList({ albumList }) {//props là albumlist
     return (
         <ul className="album-list">
             {
-                albumList.map(album =>(
+                albumList.map(album => (
                     <li key={album.id}>
-                        <Album album={album} /> 
+                        <Album album={album} />
                     </li>
                 ))
             }

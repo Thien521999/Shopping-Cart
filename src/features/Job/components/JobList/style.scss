@@ -1,0 +1,9 @@
+.job-list {
+    cursor: pointer;
+
+    & > li.completed {
+        color: gray;
+        text-decoration: line-through;
+        font-style: italic;
+    }
+}

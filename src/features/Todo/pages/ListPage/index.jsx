@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
-import PropTypes from "prop-types";
-import TodoList from "../../components/TodoList";
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import queryString from "query-string";
+import React, { useEffect, useMemo, useState } from "react";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import TodoForm from "../../components/TodoForm";
+import TodoList from "../../components/TodoList";
 
 ListPage.propTypes = {};
 
@@ -25,15 +25,18 @@ function ListPage(props) {
     },
   ];
 
+  //Lấy thông tin location thông qua cái hooks useLocation.
   const location = useLocation();
   const history = useHistory();
-  const match = useRouteMatch();
+  const match = useRouteMatch();//cai path hien tai dang dung
+
   const [todoList, setTodoList] = useState(initTodoList);
   const [filteredStatus, setFilteredStatus] = useState(() => {
     const params = queryString.parse(location.search);
     return params.status || "all";
   });
 
+  //useEffect phụ thuộc vào location.search.Moi khi location.search thay đoi mình se cap nhat lai filteredStatus bang voi params trong location search 
   useEffect(() => {
     const params = queryString.parse(location.search);
     setFilteredStatus(params.status || "all");
@@ -43,13 +46,14 @@ function ListPage(props) {
     //clone current array the new one
     const newTodoList = [...todoList];
 
-    console.log(todo, idx);
+    //console.log(todo, idx);
     //toggle state
     const newTodo = {
       ...newTodoList[idx],
       status: newTodoList[idx].status === "new" ? "completed" : "new",
     };
     newTodoList[idx] = newTodo;
+    console.log(newTodo);
     //update todo List
     setTodoList(newTodoList);
   };
@@ -58,34 +62,50 @@ function ListPage(props) {
     // setFilteredStatus('all');
     const queryParams = { status: "all" };
     history.push({
-      pathname: Math.path,
-      search: queryString.stringify(queryParams),
+      pathname: Math.path,//lấy path hiện tại
+      search: queryString.stringify(queryParams),//cap nhat lai len tren URL 
     });
   };
   const handleShowCompletedClick = () => {
     // setFilteredStatus('completed');
     const queryParams = { status: "completed" };
     history.push({
-      pathname: Math.path,
-      search: queryString.stringify(queryParams),
+      pathname: Math.path,//lấy path hiện tại
+      search: queryString.stringify(queryParams),//cap nhat lai len tren URL 
     });
   };
   const handleShowNewClick = () => {
     // setFilteredStatus('new');
     const queryParams = { status: "new" };
     history.push({
-      pathname: Math.path,
-      search: queryString.stringify(queryParams),
+      pathname: Math.path,//lấy path hiện tại
+      search: queryString.stringify(queryParams),//cap nhat lai len tren URL 
     });
   };
 
   const renderedTodoList = useMemo(() => {
     return todoList.filter((todo) => filteredStatus === "all" || filteredStatus === todo.status);
   }, [todoList, filteredStatus]);
-  // console.log(renderedTodoList);
+
+  const handleTodoFormSubmit = (values) => {
+    console.log("Form submit :", values);
+    const newTodo = {
+      id: todoList.length + 1,
+      title: values.title,
+      status: 'new',
+    }
+    console.log(newTodo);
+
+    const newTodoList = [...todoList, newTodo];
+
+    setTodoList(newTodoList);
+  }
 
   return (
     <div>
+      <h2 style={{textAlign:"center"}}>What to do</h2>
+      <TodoForm onSubmit={handleTodoFormSubmit} />
+
       <h3>Todo List</h3>
       <TodoList todoList={renderedTodoList} onTodoClick={handleTodoClick} />
 

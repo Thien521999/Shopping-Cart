@@ -1,0 +1,13 @@
+.color-box {
+    $box-size : 200px;
+
+
+    width: $box-size;
+    height: $box-size;
+    display: inline-flex;
+    border-radius: 0.25em;
+    margin-top: 15px;
+    cursor: pointer;
+
+    transition: all 0.35s ease-in-out 0s;
+}
