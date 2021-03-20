@@ -10,7 +10,7 @@ ProductSort.propTypes = {
 
 function ProductSort(props) {
     const { currentSort, onChange } = props;
-    const handleSortChange = (newValue) => {
+    const handleSortChange = (e, newValue) => {
         if (!onChange) return;
         onChange(newValue);
     }
@@ -22,8 +22,8 @@ function ProductSort(props) {
             onChange={handleSortChange}
             aria-label="disabled tabs example"
         >
-            <Tab label="Giá từ thấp đến cao"  value="salePrice:ASC"/>
-            <Tab label="Giá từ cao đến thấp"  value="salePrice:DESC"/>
+            <Tab label="Giá từ thấp đến cao" value="salePrice:ASC" />
+            <Tab label="Giá từ cao đến thấp" value="salePrice:DESC" />
         </Tabs>
     );
 }
