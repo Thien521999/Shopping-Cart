@@ -1,6 +1,6 @@
 import queryString from "query-string";
 import React, { useEffect, useMemo, useState } from "react";
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import TodoForm from "../../components/TodoForm";
 import TodoList from "../../components/TodoList";
 
@@ -28,7 +28,7 @@ function ListPage(props) {
   //Lấy thông tin location thông qua cái hooks useLocation.
   const location = useLocation();
   const history = useHistory();
-  const match = useRouteMatch();//cai path hien tai dang dung
+  //const match = useRouteMatch();//cai path hien tai dang dung
 
   const [todoList, setTodoList] = useState(initTodoList);
   const [filteredStatus, setFilteredStatus] = useState(() => {

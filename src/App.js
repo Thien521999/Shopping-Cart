@@ -6,7 +6,6 @@ import React, { useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import AlbumFeature from "./features/Album";
-import CounterFeature from "./features/Counter";
 // import './App.css';
 import TodoFeature from "./features/Todo";
 
