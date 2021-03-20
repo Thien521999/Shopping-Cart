@@ -17,12 +17,24 @@ Build app ở chế độ production trong thư mục build (để deploy lên s
 Link: https://shopping-cart-5ga21s6rx-thien521999.vercel.app/
 
 # Các chức năng đang dùng
-Dùng functional component + Hook
 
-Quản lý form hiệu quả với React Hook Form
+-Khởi tạo dự án từ đầu với create-react-app
 
-Làm giao diện nhanh và đơn giản với Material UI
+-Dùng functional component + Hook
 
-Quản lý state với Redux Toolkit
+-Quản lý form hiệu quả với React Hook Form
 
-Dùng thư viện axios goi api lấy dữ liệu
+-Làm giao diện nhanh và đơn giản với Material UI
+
+-Quản lý state với Redux Toolkit
+
+-Dùng thư viện axios gọi api lấy danh sách sản phẩm
+
+-Authentication module: 
+<ul>
+<li>đăng ký</li>
+<li>đăng nhập</li>
+<li>đăng xuất</li>
+<li>đăng ký thất bại báo lỗi<li/>
+</ul>
+
