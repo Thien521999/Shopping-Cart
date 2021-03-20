@@ -32,9 +32,20 @@ Link: https://shopping-cart-5ga21s6rx-thien521999.vercel.app/
 
 -Authentication module: 
 <ul>
-<li>đăng ký</li>
-<li>đăng nhập</li>
-<li>đăng xuất</li>
-<li>đăng ký thất bại báo lỗi<li/>
+  <li>đăng ký</li>
+  <li>đăng nhập</li>
+  <li>đăng xuất</li>
+  <li>đăng ký thất bại báo lỗi<li/>
+  <li>Đăng nhập thành công hiển thị icon</li>
+</ul>
+
+-Shopping car-Trang danh sách sản phẩm
+
+<ul>
+  <li>Viết Api lấy danh sách sản phẩm</li>
+  <li>Làm skeletons cho danh sách sản phẩm</li>
+  <li>Sắp xếp giá sản phẩm</li>
+  <li>Lọc theo dịch vụ sản phẩm</li>
+  <li>Lọc theo khoảng giá</li>
 </ul>
 
