@@ -24,7 +24,7 @@ function InputField(props) {
     //console.log(errors[name], formState.touched[name]);
 
     return (
-        //de de dang lam viec voi cac thu vien ben ngoai va tu dong binding cac ham nhu onchange, onblur, ....
+        //de de dang lam viec voi cac thu vien ben ngoai va tu dong binding cac ham nhu onchange, onblur,value ....
         //thi su dung controller cua React-hook-form.
 
         //dùng Controller nó sẽ tự động bind vào TextField này những sự kiện như onChange, onBlur, value,...Controller sẽ tự làm giúp mình

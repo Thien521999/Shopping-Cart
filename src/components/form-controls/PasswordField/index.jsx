@@ -57,7 +57,7 @@ function PasswordField(props) {
                 disabled={disabled}
             //error={!!hasError} //!phu dinh tra ve true false
             />
-            <FormHelperText error={!!hasError}>{errors[name]?.message}</FormHelperText> {/*?. de kiem tra TH co hay ko(ko chac có hay ko) */}
+            <FormHelperText >{errors[name]?.message}</FormHelperText> {/*?. de kiem tra TH co hay ko(ko chac có hay ko) */}
         </ FormControl>
 
         // <div>

@@ -31,11 +31,11 @@ function TodoForm(props) {
     const handleSubmit = (values) => {
         //console.log('TODO FORM: ', values);
         const { onSubmit } = props;
-        if (onSubmit) {
-            onSubmit(values);
-        }
+        if (!onSubmit) return;
+        onSubmit(values);
 
-        form.reset(); // khi submit xong xoa gia tri trong ô input
+        // khi submit xong reset gia tri trong ô input
+        form.reset(); 
     }
 
     return (

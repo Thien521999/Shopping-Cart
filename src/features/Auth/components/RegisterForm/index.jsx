@@ -73,7 +73,8 @@ function RegisterForm(props) {
     // form.reset();
   };
 
-  const { isSubmitting } = form.formState;
+  //isSubmitting trong formState(react-hook-form)
+  const { isSubmitting } = form.formState;  
 
   return (
     <div className={classes.root}>

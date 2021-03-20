@@ -34,7 +34,7 @@ const userSlice = createSlice({
     current: JSON.parse(localStorage.getItem(Storekeys.USER)) || {}, //thong tin cua thang login user
     settings: {},
   }, //gia tri khoi tao
-  reducers: {
+  reducers: { //sync ro not actions
     logout(state) {
       //clear local storage
       localStorage.removeItem(Storekeys.TOKEN);
@@ -44,7 +44,7 @@ const userSlice = createSlice({
     },
   },
   //Khi thunk này(regiter ở trên) thành công thì ta cần cập nhật dữ liệu vào trong redux state của mình ,ta sử dụng thằng extraReducers
-  extraReducers: {
+  extraReducers: { //Async action
     [register.fulfilled]: (state, action) => {
       //[register.fulfilled]:thực chất là 1 chuỗi có dang như này( 'user/register/fullfilled' )
       state.current = action.payload; //action.payload : chính là chỗ return trên register ở trên(dòng 15)

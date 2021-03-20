@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -89,11 +90,11 @@ export default function Header() {
             </Link>
           </Typography>
 
-          <NavLink className={classes.link} to="/todos">
+          <NavLink className={classes.link} to="/todos" >
             <Button color="inherit">Todos</Button>
           </NavLink>
 
-          <NavLink className={classes.link} to="/albums">
+          <NavLink className={classes.link} to="/albums" >
             <Button color="inherit">Albums</Button>
           </NavLink>
 
@@ -148,7 +149,7 @@ export default function Header() {
         <DialogContent>
           {mode === MODE.REGISTER && (
             <>
-              <Register closeDialog={handleClose} />
+              <Register closeDialog={handleClose} /> {/** closeDialog: dùng de dong dialog */}
               <Box textAlign="center">
                 <Button color="primary" onClick={() => setMode(MODE.LOGIN)}>
                   Already have an account. Login here.
