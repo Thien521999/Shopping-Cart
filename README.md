@@ -35,7 +35,7 @@ Link: https://shopping-cart-5ga21s6rx-thien521999.vercel.app/
   <li>đăng ký</li>
   <li>đăng nhập</li>
   <li>đăng xuất</li>
-  <li>đăng ký thất bại báo lỗi<li/>
+  <li>đăng ký thất bại báo lỗi</li>
   <li>Đăng nhập thành công hiển thị icon</li>
 </ul>
 
