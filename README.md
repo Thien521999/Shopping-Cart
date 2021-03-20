@@ -20,7 +20,7 @@ Link: https://shopping-cart-5ga21s6rx-thien521999.vercel.app/
 
 -Khởi tạo dự án từ đầu với create-react-app
 
--Dùng functional component + Hook
+-Dùng functional component + Hook(useEffect, useState)
 
 -Quản lý form hiệu quả với React Hook Form
 
@@ -39,7 +39,7 @@ Link: https://shopping-cart-5ga21s6rx-thien521999.vercel.app/
   <li>Đăng nhập thành công hiển thị icon</li>
 </ul>
 
--Shopping car-Trang danh sách sản phẩm
+-Shopping cart-Trang danh sách sản phẩm
 
 <ul>
   <li>Viết Api lấy danh sách sản phẩm</li>
