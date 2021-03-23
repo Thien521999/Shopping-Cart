@@ -6,7 +6,7 @@ import FilterByPrice from './Filters/FilterByPrice';
 import FilterByService from './Filters/FilterByService';
 
 ProductFilters.propTypes = {
-    filters: PropTypes.object.isRequired,
+    filters: PropTypes.object.isRequired, //nhung gia tri fileter hien tai  
     onChange: PropTypes.func,
 };
 

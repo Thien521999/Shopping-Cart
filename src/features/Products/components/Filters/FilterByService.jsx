@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-function FilterByService({ filters = {}, onChange = null }) {
+function FilterByService({ filters, onChange = null }) {
     const classes = useStyles();
 
     const handleChange = (e) => {

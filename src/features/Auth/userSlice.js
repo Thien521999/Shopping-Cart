@@ -18,8 +18,8 @@ export const register = createAsyncThunk("user/register", async (payload) => {
 
 export const login = createAsyncThunk("user/login", async (payload) => {
   //neu muon dispatch 1 action khac dung userAPi,còn ko thì bỏ đi,
-  //payload : là tham so mà thang user nó truyền vào khi nó goi thang register
-  //call API to register
+  //payload : là tham so mà thang user nó truyền vào khi nó goi thang login
+  //call API to login
   const data = await userApi.login(payload); //payload:thong tin nhap tren form
   //save data to local storage
   localStorage.setItem(Storekeys.TOKEN, data.jwt); //token
@@ -31,10 +31,12 @@ export const login = createAsyncThunk("user/login", async (payload) => {
 const userSlice = createSlice({
   name: "user",
   initialState: {
+    //Khởi tạo redux state từ localStorage
     current: JSON.parse(localStorage.getItem(Storekeys.USER)) || {}, //thong tin cua thang login user
     settings: {},
   }, //gia tri khoi tao
-  reducers: { //sync ro not actions
+  reducers: {
+    //Asynchronous actions
     logout(state) {
       //clear local storage
       localStorage.removeItem(Storekeys.TOKEN);
@@ -43,15 +45,15 @@ const userSlice = createSlice({
       state.current = {};
     },
   },
-  //Khi thunk này(regiter ở trên) thành công thì ta cần cập nhật dữ liệu vào trong redux state của mình ,ta sử dụng thằng extraReducers
-  extraReducers: { //Async action
+  //Khi thunk này(regiter,login ở trên) thành công thì ta cần cập nhật dữ liệu vào trong redux state của mình ,ta sử dụng thằng extraReducers
+  extraReducers: {
+    //Async action
     [register.fulfilled]: (state, action) => {
       //[register.fulfilled]:thực chất là 1 chuỗi có dang như này( 'user/register/fullfilled' )
-      state.current = action.payload; //action.payload : chính là chỗ return trên register ở trên(dòng 15)
+      state.current = action.payload; //action.payload : chính là chỗ return trên register ở trên(dòng 16)
     },
     [login.fulfilled]: (state, action) => {
-      //[login.fulfilled]:thực chất là 1 chuỗi có dang như này( 'user/login/fullfilled' )
-      state.current = action.payload; //action.payload : chính là chỗ return trên register ở trên(dòng 27)
+      state.current = action.payload;
     },
   },
 });

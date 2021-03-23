@@ -18,6 +18,8 @@ const useStyles = makeStyles(theme => ({
         listStyleType: 'none',
         '& > li': {
             marginTop: theme.spacing(1),
+            transition:'all 0.45s ease 0s', 
+
             '&:hover': {
                 cursor: 'pointer',
                 color: theme.palette.primary.dark,

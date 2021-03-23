@@ -25,9 +25,8 @@ function Login(props) {
 
             //close dialog
             const { closeDialog } = props;
-            if (closeDialog) {
-                closeDialog();
-            }
+            if(!closeDialog) return ;
+            closeDialog();
 
             // enqueueSnackbar('Success register', { variant: 'success' });
 

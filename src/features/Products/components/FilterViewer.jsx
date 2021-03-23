@@ -49,7 +49,7 @@ const FILTER_LIST = [
             delete newFilters.isPromotion;
             return newFilters;
         },
-        onToggle: () => { },
+        onToggle: () => { }, //ko toggle dc
     },
     {
         id: 3,

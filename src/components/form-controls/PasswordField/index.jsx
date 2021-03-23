@@ -35,8 +35,8 @@ function PasswordField(props) {
         <FormControl error={hasError} fullWidth margin="normal" variant="outlined" >
             <InputLabel htmlFor={name}>{label}</InputLabel>
             <Controller
-                name={name} //bat buoc phai co
-                control={form.control} //bat buoc phai co(lay tu form.control)
+                name={name}             //bat buoc phai co
+                control={form.control}  //bat buoc phai co(lay tu form.control)
                 as={OutlinedInput} //ban muon su dung UI Libery nào
 
                 id={name}
@@ -55,58 +55,10 @@ function PasswordField(props) {
                 }
 
                 disabled={disabled}
-            //error={!!hasError} //!phu dinh tra ve true false
+                //error={!!hasError} //!phu dinh tra ve true false
             />
             <FormHelperText >{errors[name]?.message}</FormHelperText> {/*?. de kiem tra TH co hay ko(ko chac có hay ko) */}
         </ FormControl>
-
-        // <div>
-        //     {/* //de de dang lam viec voi cac thu vien ben ngoai va tu dong binding cac ham nhu onchange, onblur, ....
-        //     //thi su dung controller cua React-hook-form. 
-        //     <Controller
-        //         name={name} //bat buoc phai co
-        //         control={form.control} //bat buoc phai co(lay tu form.control)
-        //         as={TextField} //ban muon su dung UI Libery nào
-
-        //         margin="normal"
-        //         variant = "outlined"
-        //         fullWidth //duoc truyen vao trong TextField luon
-        //         label={label} //duoc truyen vao trong TextField luon
-        //         disabled={disabled} //duoc truyen vao trong TextField luon
-
-        //         error={!hasError} //!phu dinh tra ve true false
-        //         helperText={errors[name]?.message} //?. de kiem tra co (loi) hay ko
-        //     /> */}
-
-        //     <FormControl fullWidth margin="normal" variant="outlined" >
-        //         <InputLabel htmlFor={name}>{label}</InputLabel>
-        //         <Controller
-        //             name={name} //bat buoc phai co
-        //             control={form.control} //bat buoc phai co(lay tu form.control)
-        //             as={OutlinedInput} //ban muon su dung UI Libery nào
-
-        //             id={name}
-        //             type={showPassword ? 'text' : 'password'}
-        //             label={label}
-        //             endAdornment={
-        //                 <InputAdornment position="end">
-        //                     <IconButton
-        //                         aria-label="toggle password visibility"
-        //                         onClick={toggleShowPassword}
-
-        //                         edge="end"
-        //                     >
-        //                         {showPassword ? <Visibility /> : <VisibilityOff />}
-        //                     </IconButton>
-        //                 </InputAdornment>
-        //             }
-
-        //             disabled={disabled}
-        //             error={!!hasError} //!phu dinh tra ve true false
-        //             helperText={errors[name]?.message} //?. de kiem tra co (loi) hay ko
-        //         />
-        //     </ FormControl>
-        // </div>
     );
 }
 

@@ -33,11 +33,11 @@ function InputField(props) {
             control={form.control} //bat buoc phai co(lay tu form.control)
             as={TextField} //ban muon su dung UI Libery nào.bat buoc phai co
 
-            margin="normal" //duoc truyen vao trong TextField luon
-            variant="outlined"//duoc truyen vao trong TextField luon
-            fullWidth //duoc truyen vao trong TextField luon
-            label={label} //duoc truyen vao trong TextField luon
-            disabled={disabled} //duoc truyen vao trong TextField luon
+            margin="normal"     //
+            variant="outlined"  //
+            fullWidth           //duoc truyen vao trong TextField luon
+            label={label}       //
+            disabled={disabled} //
 
             //de show error
             error={!!hasError} //!phu dinh tra ve true false

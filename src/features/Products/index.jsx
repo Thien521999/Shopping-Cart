@@ -11,7 +11,7 @@ function ProductFeature(props) {
     const match = useRouteMatch();
 
     return (
-        <Box pt={4}>  
+        <Box pt={4}>
             <Switch>
                 <Route path={match.url} component={ListPage} exact />
             </Switch>

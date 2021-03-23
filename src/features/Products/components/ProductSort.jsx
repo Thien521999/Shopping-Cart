@@ -8,8 +8,7 @@ ProductSort.propTypes = {
     onChange: PropTypes.func,
 };
 
-function ProductSort(props) {
-    const { currentSort, onChange } = props;
+function ProductSort({ currentSort, onChange = null }) {
     const handleSortChange = (e, newValue) => {
         if (!onChange) return;
         onChange(newValue);

@@ -5,8 +5,8 @@ const productApi = {
     // Transform _page to _start
     const newParams = { ...params };
     newParams._start = !params._page || params._page <= 1 
-      ? 0 
-      : (params._page - 1) * (params._limit || 50);
+                ? 0 
+                : (params._page - 1) * (params._limit || 50);
 
     // Remove un-needed key
     delete newParams._page;
@@ -14,7 +14,7 @@ const productApi = {
     // Fetch product list + count (do dùng thư viên strapi api)
     const productList = await axiosClient.get("/products", { params: newParams });
     const count = await axiosClient.get("/products/count", { params: newParams });
-    
+
     // Build response and return
     return {
       data: productList,

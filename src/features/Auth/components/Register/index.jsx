@@ -26,6 +26,8 @@ function Register(props) {
             const user = unwrapResult(resultAction);
             console.log('New user:', user);
 
+            //sau khi dang ky xong có the lam tiep cac buoc nhu :dong cửa sổ ,hiển thị message success... có thể làm tiếp dưới này
+
             //close dialog khi dang ky thanh cong
             const { closeDialog } = props;
             if (closeDialog) {
@@ -34,8 +36,6 @@ function Register(props) {
 
             //show thong báo khi dang ky thanh cong
             enqueueSnackbar('Success register', { variant: 'success' });
-
-            //sau khi dang ky xong có the lam tiep cac buoc nhu :dong cửa sổ ,hiển thị message success... có thể làm tiếp dưới này
 
         } catch (error) {
             console.log('Failed to register:', error);
