@@ -47,5 +47,7 @@ Link: https://shopping-cart-5ga21s6rx-thien521999.vercel.app/
   <li>Sắp xếp giá sản phẩm</li>
   <li>Lọc theo dịch vụ sản phẩm</li>
   <li>Lọc theo khoảng giá</li>
+  <li>Đồng bộ filter trên URL</li>
+  <li>Hỗ trợ nút back trên trình duyệt</li>
 </ul>
 
