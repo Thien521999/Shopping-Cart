@@ -120,13 +120,14 @@ export default function Header() {
 
             {/* dialog - log out - My Account */}
             <Menu
+                id="demo-positioned-menu"
                 keepMounted
                 anchorEl={anchorEL}
                 open={Boolean(anchorEL)}
                 onClose={handleCloseMenu}
                 anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "right",
+                    vertical: "bottom", //theo chieu doc
+                    horizontal: "right", //nam ngang
                 }}
                 transformOrigin={{
                     vertical: "top",

@@ -39,7 +39,7 @@ function ListPage(props) {
         const params = queryString.parse(location.search);
 
         return {
-            ...params,
+            ...params, //Moi khi load trang ,ta se lấy các giá tri tren URL bind vào làm default value cho filter
             _page: Number.parseInt(params._page) || 1,
             _limit: Number.parseInt(params._limit) || 12,
             _sort: params._sort || "salePrice:ASC",
@@ -81,12 +81,12 @@ function ListPage(props) {
     }, [queryParams]);
 
     const handlePageChange = (e, page) => {
-
         const filters = {
             ...queryParams,
             _page: page,
         }
 
+        //update query params(noi cach khac là push tới query params moi)
         history.push({
             pathname: history.location.pathname, //duong dan hien tai
             search: queryString.stringify(filters) //chuoi sau dấu ? tren URL. chuyen từ object sang chuoi
