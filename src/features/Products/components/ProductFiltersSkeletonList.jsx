@@ -5,7 +5,6 @@ import React from 'react';
 
 ProductFiltersSkeletonList.propTypes = {
     length: PropTypes.number,
-
 };
 
 ProductFiltersSkeletonList.defaultProps = {

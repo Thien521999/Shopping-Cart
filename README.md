@@ -49,5 +49,22 @@ Link: https://shopping-cart-5ga21s6rx-thien521999.vercel.app/
   <li>Lọc theo khoảng giá</li>
   <li>Đồng bộ filter trên URL</li>
   <li>Hỗ trợ nút back trên trình duyệt</li>
+  <li>Them sản phâm vao giỏ hang</li>
+  <li>An toàn render dư lieu HTML lên UI</li>
 </ul>
 
+
+# Idea Cart
+Detail page
+Click chon mua
+Open Mini Cart
+Go to Cart Page
+
+Cart
+-showMiniCart: true/false
+cartItems -> item(product, quantity)
+
+State tinh toan phu thuoc vao state co san
+-CartItemCount
+-CartTotal
+->createSelector()

@@ -69,7 +69,6 @@ function RegisterForm(props) {
         if (onSubmit) {
             await onSubmit(values);
         }
-
         // form.reset();
     };
 
@@ -78,15 +77,16 @@ function RegisterForm(props) {
 
     return (
         <div className={classes.root}>
-            {isSubmitting && <LinearProgress className={classes.progress} />} {/*dang submitting thi show linearProgress*/}
+            {/*đang submitting thi show linearProgress*/}
+            {isSubmitting && <LinearProgress className={classes.progress} />} 
             <Avatar className={classes.avartar}>
                 <LockOutlined />
             </Avatar>
             <Typography className={classes.title} component="h3" variant="h5">
                 Sign up
             </Typography>
-            {/* form.handleSubmit la cua thang form,
-            handleSubmit la cua minh viet */}
+
+            {/* form.handleSubmit la cua thang form, handleSubmit la cua minh viet */}
             <form onSubmit={form.handleSubmit(handleSubmit)}>
                 <InputField name="fullName" label="Full Name" form={form} />
                 <InputField name="email" label="Email" form={form} />

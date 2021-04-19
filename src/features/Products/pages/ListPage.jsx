@@ -1,41 +1,40 @@
 import { Box, Container, Grid, makeStyles, Paper } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import productApi from "api/productApi";
+import queryString from "query-string";
 import React, { useEffect, useMemo, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import FilterViewer from "../components/FilterViewer";
+import ProductFilterMobile from "../components/ProductFilterMobile";
 import ProductFilters from "../components/ProductFilters";
 import ProductFiltersSkeletonList from "../components/ProductFiltersSkeletonList";
 import ProductList from "../components/ProductList";
 import ProductSkeletonList from "../components/ProductSkeletonList";
 import ProductSort from "../components/ProductSort";
-import queryString from "query-string";
+import './index.css';
+import './responsive.css';
+
 
 ListPage.propTypes = {};
 
 const useStyles = makeStyles((theme) => ({
-    root: {},
-    left: { width: "250px" },
-    right: {
-        flex: "1 1 0",
-    },
-    pagination: {
-        display: "flex",
-        flexFlow: "row nowrap",
-        justifyContent: "center",
+    // pagination: {
+    //     display: "flex",
+    //     flexFlow: "row nowrap",
+    //     justifyContent: "center",
 
-        marginTop: "20px",
-        paddingBottom: "20px",
-    },
+    //     marginTop: "20px",
+    //     paddingBottom: "20px",
+    // },
 }));
 
 function ListPage(props) {
-    const classes = useStyles();
+    //const classes = useStyles();
 
     const history = useHistory();
     const location = useLocation();
 
-    const queryParams = useMemo(()=>{
+    const queryParams = useMemo(() => {
         const params = queryString.parse(location.search);
 
         return {
@@ -46,7 +45,7 @@ function ListPage(props) {
             isPromotion: params.isPromotion === 'true',
             isFreeShip: params.isFreeShip === 'true',
         }
-    },[location.search]);
+    }, [location.search]);
 
     const [productList, setProductList] = useState([]);
     const [pagination, setPagination] = useState({
@@ -64,6 +63,7 @@ function ListPage(props) {
             //goi api nen dat trong try catch
             try {
                 const { data, pagination } = await productApi.getAll(queryParams);
+                console.log({ data, pagination });
                 //cap nhat danh sach san pham
                 setProductList(data);
                 //cap nhat trang
@@ -129,7 +129,7 @@ function ListPage(props) {
             <Container>
                 <Grid container spacing={1}>
                     {/* Left Column */}
-                    <Grid item className={classes.left}>
+                    <Grid item className="left hide-on-mobile-tablet">
                         <Paper elevation={0}>
                             {loading_filter ? (
                                 <ProductFiltersSkeletonList length={6} />
@@ -139,20 +139,23 @@ function ListPage(props) {
                         </Paper>
                     </Grid>
                     {/* Right Column */}
-                    <Grid item className={classes.right}>
+                    <Grid item className="right">
                         <Paper elevation={0}>
                             <ProductSort currentSort={queryParams._sort} onChange={handleSortChange} />
 
                             <FilterViewer filters={queryParams} onChange={setNewFilters} />
 
+                            <ProductFilterMobile filters={queryParams} onChange={handleFilterChange} />
+
                             {loading ? <ProductSkeletonList length={12} /> : <ProductList data={productList} />}
                             {/* count:tong so trang */}
-                            <Box className={classes.pagination}>
+                            <Box className="pagination">
                                 <Pagination
                                     color={"primary"}
                                     count={Math.ceil(pagination.total / pagination.limit)}
                                     page={pagination.page}
                                     onChange={handlePageChange}
+                                    className="pagination__item"
                                 ></Pagination>
                             </Box>
                         </Paper>

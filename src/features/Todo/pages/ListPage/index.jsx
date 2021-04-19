@@ -66,6 +66,7 @@ function ListPage(props) {
       search: queryString.stringify(queryParams),//cap nhat lai len tren URL 
     });
   };
+
   const handleShowCompletedClick = () => {
     // setFilteredStatus('completed');
     const queryParams = { status: "completed" };
@@ -74,6 +75,7 @@ function ListPage(props) {
       search: queryString.stringify(queryParams),//cap nhat lai len tren URL 
     });
   };
+
   const handleShowNewClick = () => {
     // setFilteredStatus('new');
     const queryParams = { status: "new" };
@@ -103,7 +105,7 @@ function ListPage(props) {
 
   return (
     <div>
-      <h2 style={{textAlign:"center"}}>What to do</h2>
+      <h2 style={{ textAlign: "center" }}>What to do</h2>
       <TodoForm onSubmit={handleTodoFormSubmit} />
 
       <h3>Todo List</h3>

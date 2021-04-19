@@ -21,9 +21,9 @@ function Register(props) {
             //auto set username = email
             values.username = values.email;
 
-            const action = register(values);//values : là những giá trị trên form value
-            const resultAction = await dispatch(action);
-            const user = unwrapResult(resultAction);
+            const action = register(values);//values : là những giá trị trên form 
+            const resultAction = await dispatch(action); //resultAction:là action object
+            const user = unwrapResult(resultAction); //unwrapResult : tra ve kết quả payload nếu success là fullfiled ,throw error nếu rejected
             console.log('New user:', user);
 
             //sau khi dang ky xong có the lam tiep cac buoc nhu :dong cửa sổ ,hiển thị message success... có thể làm tiếp dưới này

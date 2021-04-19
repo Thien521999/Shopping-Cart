@@ -1,5 +1,6 @@
 import axiosClient from "./axiosClient";
 
+//set up API Register and Login
 const userApi = {
   register(data) {
     const url = "/auth/local/register";

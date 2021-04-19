@@ -37,25 +37,33 @@ function PasswordField(props) {
             <Controller
                 name={name}             //bat buoc phai co
                 control={form.control}  //bat buoc phai co(lay tu form.control)
-                as={OutlinedInput} //ban muon su dung UI Libery nào
+                //as={OutlinedInput} //ban muon su dung UI Libery nào
 
-                id={name}
-                type={showPassword ? 'text' : 'password'}
-                label={label}
-                endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={toggleShowPassword}
-                            edge="end"
-                        >
-                            {showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                    </InputAdornment>
-                }
+                render={({ onChange, onBlur, value, name }) => (
+                    <OutlinedInput
+                        id={name}
+                        type={showPassword ? 'text' : 'password'}
+                        label={label}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={toggleShowPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
 
-                disabled={disabled}
-                //error={!!hasError} //!phu dinh tra ve true false
+                        disabled={disabled}
+
+                        name={name}
+                        value={value}
+                        onBlur={onBlur}
+                        onChange={onChange}
+                    />
+                )}
             />
             <FormHelperText >{errors[name]?.message}</FormHelperText> {/*?. de kiem tra TH co hay ko(ko chac có hay ko) */}
         </ FormControl>

@@ -5,7 +5,6 @@ import Storekeys from "constants/storage-key";
 
 // First, create the thunk
 export const register = createAsyncThunk("user/register", async (payload) => {
-  //neu muon dispatch 1 action khac dung userAPi,còn ko thì bỏ đi,
   //payload : là tham so mà thang user nó truyền vào khi nó goi thang register
   //call API to register
   const data = await userApi.register(payload); //payload:thong tin nhap tren form
@@ -17,7 +16,6 @@ export const register = createAsyncThunk("user/register", async (payload) => {
 });
 
 export const login = createAsyncThunk("user/login", async (payload) => {
-  //neu muon dispatch 1 action khac dung userAPi,còn ko thì bỏ đi,
   //payload : là tham so mà thang user nó truyền vào khi nó goi thang login
   //call API to login
   const data = await userApi.login(payload); //payload:thong tin nhap tren form
@@ -41,6 +39,7 @@ const userSlice = createSlice({
       //clear local storage
       localStorage.removeItem(Storekeys.TOKEN);
       localStorage.removeItem(Storekeys.USER);
+      localStorage.removeItem("products")
       //cap nhat state ve object rong
       state.current = {};
     },
@@ -50,7 +49,7 @@ const userSlice = createSlice({
     //Async action
     [register.fulfilled]: (state, action) => {
       //[register.fulfilled]:thực chất là 1 chuỗi có dang như này( 'user/register/fullfilled' )
-      state.current = action.payload; //action.payload : chính là chỗ return trên register ở trên(dòng 16)
+      state.current = action.payload; //action.payload : chính là chỗ return trên register ở trên
     },
     [login.fulfilled]: (state, action) => {
       state.current = action.payload;

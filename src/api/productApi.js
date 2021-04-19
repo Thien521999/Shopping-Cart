@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const productApi = {
   async getAll(params) {
-    // Transform _page to _start
+    // Transform _page to _start  , _limit: số phan tu trong 1 trang, _page: trang hien tai, _start: số phần tử skip qua
     const newParams = { ...params };
     newParams._start = !params._page || params._page <= 1 
                 ? 0 

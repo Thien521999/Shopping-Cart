@@ -1,24 +1,8 @@
-import React from "react";
+import { Box, Chip } from "@material-ui/core";
 import PropTypes from "prop-types";
-import { Box, Chip, makeStyles } from "@material-ui/core";
-import { useMemo } from "react";
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "flex",
-        flexFlow: "row wrap",
-        alignItems: "center",
-
-        padding: 0,
-        margin: theme.spacing(2, 0),
-        listStyleType: "none",
-
-        "& > li": {
-            margin: 0,
-            padding: theme.spacing(1),
-        },
-    },
-}));
+import React, { useMemo } from "react";
+import './css/index.css';
+import './css/responsive.css';
 
 const FILTER_LIST = [
     {
@@ -65,15 +49,15 @@ const FILTER_LIST = [
         },
         onToggle: () => { },
     },
-    {
-        id: 4,
-        getLabel: (filters) => 'Danh mục',
-        isActive: () => true,
-        isVisible: (filters) => Object.keys(filters).includes('name'),
-        isRemovable: true,
-        onRemove: (filters) => { },
-        onToggle: (filters) => { },
-    },
+    // {
+    //     id: 4,
+    //     getLabel: (filters) => 'Danh mục',
+    //     isActive: () => true,
+    //     isVisible: (filters) => Object.keys(filters).includes('name'),
+    //     isRemovable: true,
+    //     onRemove: (filters) => { },
+    //     onToggle: (filters) => { },
+    // },
 ];
 
 FilterViewer.propTypes = {
@@ -82,16 +66,16 @@ FilterViewer.propTypes = {
 };
 
 function FilterViewer({ filters = {}, onChange = null }) {
-    const classes = useStyles();
 
+    //visibleFilters tinh toán lai khi dependence thay doi
     const visibleFilters = useMemo(() => {
         return FILTER_LIST.filter((x) => x.isVisible(filters));
     }, [filters]);
 
     return (
-        <Box className={classes.root} component="ul">
+        <Box className="viewer hide-on-mobile-tablet " component="ul">
             {visibleFilters.map((x) => (
-                <li key={x.id}>
+                <li key={x.id} className="viewer__item">
                     <Chip
                         label={x.getLabel(filters)}
                         color={x.isActive(filters) ? "primary" : "default"}

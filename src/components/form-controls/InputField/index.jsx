@@ -31,17 +31,29 @@ function InputField(props) {
         <Controller
             name={name} //bat buoc phai co
             control={form.control} //bat buoc phai co(lay tu form.control)
-            as={TextField} //ban muon su dung UI Libery nào.bat buoc phai co
+            //as={TextField} //ban muon su dung UI Libery nào.bat buoc phai co
+            //dung as thi ko can phai bind onChange, onblur, value,
+            //con render thi phai truyen vao
 
-            margin="normal"     //
-            variant="outlined"  //
-            fullWidth           //duoc truyen vao trong TextField luon
-            label={label}       //
-            disabled={disabled} //
+            render={({ onChange, onBlur, value, name }) => (
+                <TextField              //ban muon su dung UI Libery nào.bat buoc phai co
+                    margin="normal"     
+                    variant="outlined"  
+                    fullWidth           
+                    label={label}       
+                    disabled={disabled} 
 
-            //de show error
-            error={!!hasError} //!phu dinh tra ve true false
-            helperText={errors[name]?.message} //?. de kiem tra th có hay ko(optional)
+                    //de show error
+                    error={!!hasError} //!phu dinh tra ve true false
+                    helperText={errors[name]?.message} //?. de kiem tra th có hay ko(optional)
+
+                    //con render thi phai truyen vao
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                />
+            )}
         />
 
     );

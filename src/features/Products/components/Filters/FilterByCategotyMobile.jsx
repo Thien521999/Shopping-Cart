@@ -1,34 +1,35 @@
-import { Box, makeStyles, Typography } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import categoryApi from "api/categoryApi";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import 'index.css';
 
-FilterByCategoty.propTypes = {
+FilterByCategotyMobile.propTypes = {
     onChange: PropTypes.func,
 };
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        padding: theme.spacing(2),
-    },
+    // root: {
+    //     padding: theme.spacing(2),
+    // },
 
-    menu: {
-        margin: 0,
-        padding: 0,
-        listStyleType: 'none',
-        '& > li': {
-            marginTop: theme.spacing(1),
-            transition: 'all 0.45s ease 0s',
+    // menu: {
+    //     margin: 0,
+    //     padding: 0,
+    //     listStyleType: 'none',
+    //     '& > li': {
+    //         marginTop: theme.spacing(1),
+    //         transition: 'all 0.45s ease 0s',
 
-            '&:hover': {
-                cursor: 'pointer',
-                color: theme.palette.primary.dark,
-            }
-        }
-    },
+    //         '&:hover': {
+    //             cursor: 'pointer',
+    //             color: theme.palette.primary.dark,
+    //         }
+    //     }
+    // },
 }))
 
-function FilterByCategoty({ onChange = null }) {
+function FilterByCategotyMobile({ onChange = null }) {
     const classes = useStyles();
 
     const [categoryList, setCategoryList] = useState([]);
@@ -56,13 +57,12 @@ function FilterByCategoty({ onChange = null }) {
     };
 
     return (
-        <Box className={classes.root}>
-            <Typography variant="subtitle2">DANH MỤC SẢN PHẨM</Typography>
-
-            <ul className={classes.menu}>
+        <Box className="root" >
+            <ul className="mobile-category__list">
                 {categoryList.map((category) => (
-                    <li key={category.id} onClick={() => handleCategoryClick(category)}>
-                        <Typography variant="body2">{category.name}</Typography>
+                    <li className="mobile-category__item" key={category.id} onClick={() => handleCategoryClick(category)}>
+                        {/* <Typography className="name__category" >{category.name}</Typography> */}
+                        <span className="mobile-category__link">{category.name}</span>
                     </li>
                 ))}
             </ul>
@@ -70,4 +70,4 @@ function FilterByCategoty({ onChange = null }) {
     );
 }
 
-export default FilterByCategoty;
+export default FilterByCategotyMobile;
