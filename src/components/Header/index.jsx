@@ -8,6 +8,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { AccountCircle, Close } from "@material-ui/icons";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import MenuIcon from "@material-ui/icons/Menu";
 import PhotoAlbumIcon from '@material-ui/icons/PhotoAlbum';
@@ -16,13 +17,14 @@ import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 import Login from "features/Auth/components/Login";
 import Register from "features/Auth/components/Register";
 import { logout } from "features/Auth/userSlice";
+import { hideMiniCart } from "features/Cart/cartSlice";
+import ShowMiniCart from "features/Cart/components/ShowMiniCart";
 import { cartItemCountSelector } from "features/Cart/selectors";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import "./index.css";
 import './responsive.css';
-import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,19 +37,6 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.grey[500],
         zIndex: 1,
     },
-    // ko dc delete con lam tiep,hehe
-    // cart: {
-    //     position: "relative",
-    // },
-    // cart__dialog: {
-    //     position: "absolute",
-    //     zIndex: '2',
-    //     top: 'calc(200%)',
-    //     padding: '2',
-    //     backgroundColor: '#fff',
-    //     borderRadius: '5px',
-    //     boxShadow: '0 5px 8px rgba(0, 0, 0, 0.8)',
-    // }
 }));
 
 const MODE = {
@@ -69,6 +58,9 @@ export default function Header() {
     const [open, setOpen] = useState(false);
     const [mode, setMode] = useState(MODE.LOGIN);
     const [anchorEL, setAnchorEL] = useState(null);
+
+    const showCart = useSelector(state => state.cart.showMiniCart);
+    console.log(showCart);
 
     const handleUserClick = (e) => {
         setAnchorEL(e.currentTarget);
@@ -104,6 +96,10 @@ export default function Header() {
     }
     const handleClickAlbum = () => {
         history.push('/albums');
+    }
+
+    const handleCartClose = () => {
+        dispatch(hideMiniCart());
     }
 
     const classes = useStyles();
@@ -147,31 +143,19 @@ export default function Header() {
                         </IconButton>
                     </Box>
 
-                    {/* 
-                    <Box component="div" className="cart__dialog">
-                        <Box component="div" className="icon">
-                            <CloseIcon fontSize="small" className="icon__close" />
-                        </Box>
-
-                        <ul className="text">
-                            <li className="icon__success">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg>
-                            </li>
-                            <li>Thêm vào giỏ hàng thành công!</li>
-                        </ul>
-                        <Button variant="contained" color="secondary" className="btn" size="small">
-                            Xem giỏ hàng và thanh toán
-                        </Button>
-                    </Box> 
-                    */}
-
-
                     {/*show Icon đã đăng nhập */}
                     {isLoggedIn && (
                         <IconButton color="inherit" onClick={handleUserClick}>
                             <AccountCircle />
                         </IconButton>
                     )}
+
+                    {/* show mini cart */}
+                    <Box className="cartMini">
+                        {showCart && (
+                            <ShowMiniCart onClose={handleCartClose} />
+                        )}
+                    </Box>
                 </Toolbar>
             </AppBar>
 
@@ -201,7 +185,7 @@ export default function Header() {
                     </li>
                     <li className="nav__mobile-item" onClick={handleClickOpen}>
                         <label className="icon__item" htmlFor="nav-mobile-input"><HowToRegIcon /></label>
-                        <label className="text__item"  htmlFor="nav-mobile-input">Login</label>
+                        <label className="text__item" htmlFor="nav-mobile-input">Login</label>
                     </li>
                     <li className="nav__mobile-item" onClick={handleLogoutClick}>
                         <label className="icon__item" htmlFor="nav-mobile-input"><ExitToAppIcon /></label>
