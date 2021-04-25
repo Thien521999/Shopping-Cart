@@ -16,6 +16,7 @@ function CartFeature(props) {
     const cartTotal = useSelector(cartTotalSelector);
     const numberItemInCart = useSelector(cartItemCountSelector);
     const infoProduct = useSelector(state => state.cart.cartItems);
+    console.log(typeof infoProduct);
 
     const [productList, setProductList] = useState(infoProduct);
     console.log(productList);

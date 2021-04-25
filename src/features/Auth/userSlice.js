@@ -8,6 +8,7 @@ export const register = createAsyncThunk("user/register", async (payload) => {
   //payload : là tham so mà thang user nó truyền vào khi nó goi thang register
   //call API to register
   const data = await userApi.register(payload); //payload:thong tin nhap tren form
+  console.log(data);
   //save data to local storage
   localStorage.setItem(Storekeys.TOKEN, data.jwt); //token
   localStorage.setItem(Storekeys.USER, JSON.stringify(data.user)); // do user là 1 object nen phai dùng JSON.stringify(data.user)

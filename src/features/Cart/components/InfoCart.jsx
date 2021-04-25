@@ -8,6 +8,14 @@ import './index.css';
 import './responsive.css';
 import { useSnackbar } from 'notistack';
 import { useHistory } from 'react-router';
+import QuantityField from 'components/form-controls/QuantityField';
+import { useForm } from 'react-hook-form';
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+// import { setQuantity } from '../cartSlice';
+// import CartItem from './CartItem';
+// import { useSelector } from 'react-redux';
+// import { cartItemCountSelector, cartTotalSelector } from '../selectors';
 
 InfoCart.propTypes = {
     infoProduct: PropTypes.array,
@@ -36,7 +44,31 @@ function InfoCart({ infoProduct = [], cartTotal = 0, numberItemInCart = 0, onDel
 
     const handleClickContinueBuy = () => {
         history.push('/');
-    }
+    };
+
+    const schema = yup.object().shape({
+        quantity: yup.number()
+            .required('Please enter quantity')
+            .min(1, 'Minimum value is 1')
+            .typeError('Please enter a number'),
+    });
+
+    const form = useForm({
+        defaultValues: {
+            quantity: 1,
+        },
+        resolver: yupResolver(schema),
+    });
+
+    const handleSubmit = (value) => {
+        console.log(infoProduct.length);
+    };
+
+    // console.log(infoProduct[0].id);
+
+    // const cartTotal = useSelector(cartTotalSelector);
+    // const numberItemInCart = useSelector(cartItemCountSelector);
+
 
     return (
         <Grid item className={classes.left} >
@@ -46,6 +78,28 @@ function InfoCart({ infoProduct = [], cartTotal = 0, numberItemInCart = 0, onDel
                     <span className="product-count"> ({numberItemInCart} sản phẩm)</span>
                 </h2>
             </Box>
+
+            {/* {
+                infoProduct.length > 0 && (
+                    infoProduct.map((item, idx) => (
+                        <CartItem key={item.id} cartTotal={cartTotal} numberItemInCart={numberItemInCart} />
+                    ))
+                )
+            }
+
+            {
+                infoProduct.length <= 0 && (
+                    <Paper elevation={0} >
+                        <Box component="div" className="empty">
+                            <img src="https://salt.tikicdn.com/desktop/img/mascot@2x.png" alt="" className="empty__img" />
+                            <p className="empty__note">Không có sản phẩm nào trong giỏ hàng của bạn</p>
+                            <Button variant="contained" color="secondary" className="empty__btn" size="medium" onClick={handleClickContinueBuy}>
+                                Tiếp tục mua sắm
+                            </Button>
+                        </Box>
+                    </Paper>
+                )
+            } */}
 
             {
                 infoProduct.length > 0 && (
@@ -87,6 +141,15 @@ function InfoCart({ infoProduct = [], cartTotal = 0, numberItemInCart = 0, onDel
                                                         <input type="tel" className="qty__input" placeholder={item.quantity} />
                                                         <span className="qty__increase qty--disable">+</span>
                                                     </Box>
+
+                                                    {/* <form>
+                                                        <QuantityField
+                                                            name="quantity"
+                                                            label="Quantity"
+                                                            form={form}
+                                                            onSubmit={handleSubmit}
+                                                        />
+                                                    </form> */}
                                                 </Box>
                                             </Box>
                                         </Box>

@@ -6,6 +6,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import RegisterForm from '../RegisterForm';
 
+
 Register.propTypes = {
     closeDialog: PropTypes.func,
 };

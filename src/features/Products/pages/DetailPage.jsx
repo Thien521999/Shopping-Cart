@@ -10,7 +10,7 @@ import ProductMenu from '../components/ProductMenu';
 import ProductReview from '../components/ProductReview';
 import ProductThumbnail from '../components/ProductThumbnail';
 import useProductDetail from '../hooks/useProductDetail';
-import { addToCart } from 'features/Cart/cartSlice';
+import { addToCart, showMiniCart } from 'features/Cart/cartSlice';
 // import './index.css';
 // import './responsive.css';
 
@@ -32,13 +32,13 @@ const useStyles = makeStyles(theme => ({
     //     padding: theme.spacing(1.5),
     //     flex: '1 1 0',
     // },
-    // loading: {
-    //     position: 'fixed',
-    //     top: '0',
-    //     left: '0',
-    //     right: '0',
-    //     width: '100%',
-    // },
+    loading: {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        right: '0',
+        width: '100%',
+    },
     // container: {
     //     display: 'flex',
     // },
@@ -70,6 +70,7 @@ function DetailPage(props) {
         });
         //console.log(action);
         dispatch(action);
+        dispatch(showMiniCart());
     }
 
     return (
