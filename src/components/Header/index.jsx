@@ -60,7 +60,7 @@ export default function Header() {
     const [anchorEL, setAnchorEL] = useState(null);
 
     const showCart = useSelector(state => state.cart.showMiniCart);
-    console.log(showCart);
+    //console.log(showCart);
 
     const handleUserClick = (e) => {
         setAnchorEL(e.currentTarget);
@@ -81,7 +81,12 @@ export default function Header() {
     const handleLogoutClick = () => {
         const action = logout();
         dispatch(action);
+
+        setAnchorEL(null);
+
         history.push('/');
+
+
     };
 
     const handleClickCart = () => {
@@ -135,13 +140,7 @@ export default function Header() {
                         </Box>
                     )}
 
-                    <Box className="cart">
-                        <IconButton aria-label="show 4 new mails" color="inherit" onClick={handleClickCart}>
-                            <Badge badgeContent={cartItemsCount} color="secondary">
-                                <ShoppingCartIcon />
-                            </Badge>
-                        </IconButton>
-                    </Box>
+
 
                     {/*show Icon đã đăng nhập */}
                     {isLoggedIn && (
@@ -155,6 +154,14 @@ export default function Header() {
                         {showCart && (
                             <ShowMiniCart onClose={handleCartClose} />
                         )}
+                    </Box>
+
+                    <Box className="cart">
+                        <IconButton aria-label="show 4 new mails" color="inherit" onClick={handleClickCart}>
+                            <Badge badgeContent={cartItemsCount} color="secondary">
+                                <ShoppingCartIcon />
+                            </Badge>
+                        </IconButton>
                     </Box>
                 </Toolbar>
             </AppBar>
