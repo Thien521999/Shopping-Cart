@@ -1,14 +1,14 @@
-import { Box, makeStyles } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import categoryApi from "api/categoryApi";
+import 'index.css';
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import 'index.css';
 
 FilterByCategotyMobile.propTypes = {
     onChange: PropTypes.func,
 };
 
-const useStyles = makeStyles(theme => ({
+//const useStyles = makeStyles(theme => ({
     // root: {
     //     padding: theme.spacing(2),
     // },
@@ -27,10 +27,10 @@ const useStyles = makeStyles(theme => ({
     //         }
     //     }
     // },
-}))
+//}))
 
 function FilterByCategotyMobile({ onChange = null }) {
-    const classes = useStyles();
+    //const classes = useStyles();
 
     const [categoryList, setCategoryList] = useState([]);
 
