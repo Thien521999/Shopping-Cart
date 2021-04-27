@@ -1,5 +1,6 @@
-import { Box, Container, Grid, makeStyles, Paper } from "@material-ui/core";
+import { Box, Container, Grid, Paper } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
+import categoryApi from "api/categoryApi";
 import productApi from "api/productApi";
 import queryString from "query-string";
 import React, { useEffect, useMemo, useState } from "react";
@@ -11,22 +12,22 @@ import ProductFiltersSkeletonList from "../components/ProductFiltersSkeletonList
 import ProductList from "../components/ProductList";
 import ProductSkeletonList from "../components/ProductSkeletonList";
 import ProductSort from "../components/ProductSort";
-import './index.css';
-import './responsive.css';
+import './css/index.css';
+import './css/responsive.css';
 
 
 ListPage.propTypes = {};
 
-const useStyles = makeStyles((theme) => ({
-    // pagination: {
-    //     display: "flex",
-    //     flexFlow: "row nowrap",
-    //     justifyContent: "center",
+// const useStyles = makeStyles((theme) => ({
+//     // pagination: {
+//     //     display: "flex",
+//     //     flexFlow: "row nowrap",
+//     //     justifyContent: "center",
 
-    //     marginTop: "20px",
-    //     paddingBottom: "20px",
-    // },
-}));
+//     //     marginTop: "20px",
+//     //     paddingBottom: "20px",
+//     // },
+// }));
 
 function ListPage(props) {
     //const classes = useStyles();
@@ -35,7 +36,7 @@ function ListPage(props) {
     const location = useLocation();
 
     const queryParams = useMemo(() => {
-        const params = queryString.parse(location.search);
+        const params = queryString.parse(location.search); //cac gia tri tren URL
 
         return {
             ...params, //Moi khi load trang ,ta se lấy các giá tri tren URL bind vào làm default value cho filter
@@ -46,6 +47,8 @@ function ListPage(props) {
             isFreeShip: params.isFreeShip === 'true',
         }
     }, [location.search]);
+
+    //console.log(queryParams);
 
     const [productList, setProductList] = useState([]);
     const [pagination, setPagination] = useState({
@@ -58,18 +61,21 @@ function ListPage(props) {
     const [loading, setLoading] = useState(true);
     const [loading_filter, setLoading_filter] = useState(true);
 
+    //Danh mục đã chọn
+    const [categoryPicked, setCategoryPicked] = useState();
+
     useEffect(() => {
         (async () => {
             //goi api nen dat trong try catch
             try {
                 const { data, pagination } = await productApi.getAll(queryParams);
-                console.log({ data, pagination });
+                //console.log({ data, pagination });
                 //cap nhat danh sach san pham
                 setProductList(data);
                 //cap nhat trang
                 setPagination(pagination);
                 //console.log({ response });
-                console.log({ data, pagination });
+                //console.log({ data, pagination });
             } catch (error) {
                 console.log("Failed to fetch product list:", error);
             }
@@ -77,6 +83,22 @@ function ListPage(props) {
             //dù cho thành công hay thất bại ta đều ẩn loading đi
             setLoading(false);
             setLoading_filter(false);
+        })();
+    }, [queryParams]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                if (!queryParams['category.id']) {
+                    return;
+                } else {
+                    const list = await categoryApi.get(Number.parseInt(queryParams['category.id']));
+                    //console.log(list);
+                    setCategoryPicked(list);
+                }
+            } catch (error) {
+                console.log('Failed to fetch category list!', error);
+            }
         })();
     }, [queryParams]);
 
@@ -143,7 +165,11 @@ function ListPage(props) {
                         <Paper elevation={0}>
                             <ProductSort currentSort={queryParams._sort} onChange={handleSortChange} />
 
-                            <FilterViewer filters={queryParams} onChange={setNewFilters} />
+                            <FilterViewer
+                                filters={queryParams}
+                                onChange={setNewFilters}
+                                categoryPicked={categoryPicked}
+                            />
 
                             <ProductFilterMobile filters={queryParams} onChange={handleFilterChange} />
 
