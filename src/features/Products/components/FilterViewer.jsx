@@ -39,7 +39,11 @@ const FILTER_LIST = [
         id: 3,
         getLabel: (filters) => `Từ ${filters.salePrice_gte} đến ${filters.salePrice_lte}`,
         isActive: () => true,
-        isVisible: (filters) => Object.keys(filters).includes('salePrice_lte') && Object.keys(filters).includes('salePrice_gte'),
+        isVisible: (filters) =>
+            Object.keys(filters).includes('salePrice_lte') &&
+            Object.keys(filters).includes('salePrice_gte') &&
+            Number(filters.salePrice_gte) >= 0 &&
+            Number(filters.salePrice_lte) >= 0,
         isRemovable: true,
         onRemove: (filters) => {
             const newFilters = { ...filters };
@@ -47,29 +51,42 @@ const FILTER_LIST = [
             delete newFilters.salePrice_gte;
             return newFilters;
         },
-        onToggle: () => { },
+        onToggle: () => { },//ko toggle dc
     },
-    // {
-    //     id: 4,
-    //     getLabel: (filters) => 'Danh mục',
-    //     isActive: () => true,
-    //     isVisible: (filters) => Object.keys(filters).includes('name'),
-    //     isRemovable: true,
-    //     onRemove: (filters) => { },
-    //     onToggle: (filters) => { },
-    // },
+    {
+        id: 4,
+        getLabel: (filters, categoryPicked) => {
+            const newFilters = { ...filters };
+            //console.log(newFilters);
+            if (!categoryPicked) return;
+            if (newFilters['category.id']) {
+                return categoryPicked.name;
+            }
+            //return '';
+        },
+        isActive: () => true,
+        isVisible: (filters) => filters['category.id'],
+        isRemovable: true,
+        onRemove: (filters) => {
+            const newFilters = { ...filters };
+            delete newFilters['category.id'];
+            return newFilters;
+        },
+        onToggle: () => { },//ko toggle dc
+    },
 ];
 
 FilterViewer.propTypes = {
     filters: PropTypes.object,
     onChange: PropTypes.func,
+    categoryPicked: PropTypes.object,
 };
 
-function FilterViewer({ filters = {}, onChange = null }) {
+function FilterViewer({ filters = {}, onChange = null, categoryPicked = {} }) {
 
-    //visibleFilters tinh toán lai khi dependence thay doi
+    //visibleFilters tinh toán lai khi dependence thay doi(dùng useMemo: chỉ tính toán lại value mới nếu dependencies thay đổi)
     const visibleFilters = useMemo(() => {
-        return FILTER_LIST.filter((x) => x.isVisible(filters));
+        return FILTER_LIST.filter((x) => x.isVisible(filters)); //loc ra nhung phan tu hien thi(tra ve 1 array)
     }, [filters]);
 
     return (
@@ -77,18 +94,16 @@ function FilterViewer({ filters = {}, onChange = null }) {
             {visibleFilters.map((x) => (
                 <li key={x.id} className="viewer__item">
                     <Chip
-                        label={x.getLabel(filters)}
+                        label={x.getLabel(filters, categoryPicked)}
                         color={x.isActive(filters) ? "primary" : "default"}
-                        clickable={!x.isRemovable} //tra ve true or false => nếu click dc thì ko remove dc và ngc lai
+                        clickable={!x.isRemovable} //tra ve true or false => nếu click dc thì ko remove dc và ngc lai(clickable la attribute trong Chip)
                         onClick={
-                            x.isRemovable
+                            x.isRemovable //Nếu remove dc thì ko làm gì cả,ko remove dc có nghia là toggle
                                 ? null
                                 : () => {
-                                    //Nếu remove dc thì ko làm gì cả,ko remove dc có nghia là toggle
                                     if (!onChange) return;
-
                                     const newFilters = x.onToggle(filters);
-                                    onChange(newFilters);
+                                    onChange(newFilters); //onChange truyen xuong de cap nhat lai du lieu.
                                 }
                         }
                         onDelete={
