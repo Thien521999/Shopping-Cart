@@ -19,11 +19,11 @@ const cartSlice = createSlice({
 
       const index = state.cartItems.findIndex((x) => x.id === newItem.id);
       if (index >= 0) {
-        console.log(" >= 0");
+        //console.log(" >= 0");
         //increate quantity
         state.cartItems[index].quantity += newItem.quantity;
       } else {
-        console.log(" < 0 ");
+        //console.log(" < 0 ");
         //add to cart
         const item = state.cartItems.push(newItem);
         console.log(item);
@@ -44,10 +44,10 @@ const cartSlice = createSlice({
     removeFromCart(state, action) {
       const idNeedToRemove = action.payload;
       //filter tra ve 1 mang moi, mang moi nay bo truc tiep vao cartItem
-      // state.cartItems = state.cartItems.filter((x) => x.id !== idNeedToRemove);
-      state.cartItems.splice(idNeedToRemove, 1);
+      state.cartItems = state.cartItems.filter((x) => x.id !== idNeedToRemove);
+      //state.cartItems.splice(idNeedToRemove, 1);
 
-      localStorage.setItem('products', JSON.stringify(state.cartItems));
+      localStorage.setItem("products", JSON.stringify(state.cartItems));
     },
   },
 });
