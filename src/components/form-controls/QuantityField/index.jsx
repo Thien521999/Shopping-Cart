@@ -1,4 +1,4 @@
-import { Box, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Box, IconButton, makeStyles } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -29,17 +29,20 @@ const useStyles = makeStyles(theme => ({
 
 function QuantityField(props) {
     const classes = useStyles();
-    const { form, name, label, disabled } = props;
+    const { form, name, disabled } = props;
     //Khi ma field da touch(co nghia la focus,chinh sua rui)rui thì nó tinh la touch
     const { errors, setValue } = form;
     const hasError = !!errors[name];
     //console.log(errors[name], formState.touched[name]);
 
     return (
-        <FormControl error={hasError} fullWidth margin="normal" variant="outlined" size="small">
-            {/* <InputLabel htmlFor={name}>{label}</InputLabel> */}
-            <Typography >{label}</Typography>
-
+        <FormControl 
+            error={hasError} 
+            fullWidth 
+            margin="normal" 
+            variant="outlined" 
+            size="small"
+        >
             <Controller
                 name={name}             //bat buoc phai co
                 control={form.control}  //bat buoc phai co(lay tu form.control)
@@ -67,7 +70,7 @@ function QuantityField(props) {
                     </Box>
                 )}
             />
-            <FormHelperText >{errors[name]?.message}</FormHelperText> {/*?. de kiem tra TH co hay ko(ko chac có hay ko) */}
+            <FormHelperText >{errors[name]?.message}</FormHelperText> {/* ?. de kiem tra TH co hay ko(ko chac có hay ko) */}
         </ FormControl>
     );
 }
