@@ -25,7 +25,7 @@ function Login(props) {
 
             //close dialog
             const { closeDialog } = props;
-            if(!closeDialog) return ;
+            if (!closeDialog) return;
             closeDialog();
 
             // enqueueSnackbar('Success register', { variant: 'success' });
@@ -36,11 +36,13 @@ function Login(props) {
             enqueueSnackbar(error.message, { variant: 'error' });
         }
     }
+
     return (
         <div>
             <LoginForm onSubmit={handleSubmit} />
         </div>
-    );
+    )
+
 }
 
 export default Login;

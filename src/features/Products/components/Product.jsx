@@ -7,13 +7,11 @@ import { useHistory } from "react-router";
 
 const useStyle = makeStyles(theme => ({
     root: {
-
         "&:hover": {
             cursor: 'pointer',
             border: `1px solid ${theme.palette.grey[300]}`,
             boxShadow: 'rgb(0 0 0 / 10%) 0px 0px 20px',
-            transition: 'all 0.45s ease 0s',
-
+            // transition: 'all 0.45s ease 0s',
             zIndex: '1',
         }
     },
@@ -42,13 +40,14 @@ function Product({ product = {} }) {
                     src={thumbnailUrl}
                     alt={product.name}
                     width="100%"
+                    className={classes.img}
                 />
             </Box>
-            <Typography 
-                variant="body2" 
+            <Typography
+                variant="body2"
                 style={{ overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: '1' }}
             >
-                    {product.name}
+                {product.name}
             </Typography>
 
             <Typography variant="body2">

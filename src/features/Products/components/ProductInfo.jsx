@@ -1,8 +1,9 @@
 import { Box, Typography } from '@material-ui/core';
+import { LanguageContext } from 'context/LanguageContext';
 import { formatPrice } from 'features/utils';
 import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 
 ProductInfo.propTypes = {
     product: PropTypes.object,
@@ -10,6 +11,7 @@ ProductInfo.propTypes = {
 
 function ProductInfo({ product = {} }) {
     const { enqueueSnackbar } = useSnackbar();
+    const { defaultLanguage } = useContext(LanguageContext);
 
     //Lay thuoc tinh cua object product(xem trong api tra ve)
     const { name, shortDescription, salePrice, originalPrice, promotionPercent } = product;
@@ -45,7 +47,7 @@ function ProductInfo({ product = {} }) {
                     }
                 </Box>
                 <Box className="color">
-                    <Box component="span" className="titleColor">Chọn màu: </Box>
+                    <Box component="span" className="titleColor">{defaultLanguage.Choose_Color}: </Box>
                     <Box component="span" className="nameColor">Space Grey</Box>
                     <Box component="div" style={{ display: 'flex' }}>
                         <Box component="div" style={{ margin: '8px 12px 0 0' }}>
@@ -60,14 +62,14 @@ function ProductInfo({ product = {} }) {
                     </Box>
                 </Box>
                 <Box className="boxFreeship">
-                    <Box component="div" className="titleFree"> Mã giảm giá </Box>
+                    <Box component="div" className="titleFree">{defaultLanguage.Discount_Code} </Box>
                     <Box component="div" className="boxFree">
                         <Box component="div" className="freeship" onClick={handleChooseColor}>Freeship</Box>
                         <img className="imgFree" src="https://salt.tikicdn.com/ts/upload/63/43/b6/472934eece91531f0855b86a00a3b1a1.png" alt="anh" />
                     </Box>
                 </Box>
             </Box>
-            
+
             {/* box mobile */}
             <Box className="box__mobile" >
                 <Box className="priceBox__mobile">

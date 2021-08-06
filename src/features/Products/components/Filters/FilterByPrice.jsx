@@ -1,6 +1,7 @@
 import { Box, Button, makeStyles, TextField, Typography } from '@material-ui/core';
+import { LanguageContext } from 'context/LanguageContext';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 FilterByPrice.propTypes = {
     onChange: PropTypes.func,
@@ -32,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function FilterByPrice({ onChange = null }) {
+    const { defaultLanguage } = useContext(LanguageContext);
     const classes = useStyles();
 
     const [values, setValues] = useState({
@@ -62,7 +64,7 @@ function FilterByPrice({ onChange = null }) {
 
     return (
         <Box className={classes.root}>
-            <Typography variant="subtitle2">CHỌN KHOẢNG GIÁ</Typography>
+            <Typography variant="subtitle2">{defaultLanguage.Choose_a_price_range}</Typography>
             <Box className={classes.range}>
                 <TextField name="salePrice_gte" value={values.salePrice_gte} onChange={handleChange} />
                 <span>-</span>
@@ -70,10 +72,10 @@ function FilterByPrice({ onChange = null }) {
             </Box>
             <Box className={classes.button}>
                 <Button variant="outlined" color="primary" onClick={handleSubmit} size="small">
-                    Áp dụng
+                    {defaultLanguage.Apply}
                 </Button>
                 <Button variant="outlined" color="primary" onClick={handleReset} size="small">
-                    Reset
+                    {defaultLanguage.Reset}
                 </Button>
             </Box>
         </Box>

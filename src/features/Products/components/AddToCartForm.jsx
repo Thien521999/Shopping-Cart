@@ -1,8 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@material-ui/core";
 import QuantityField from "components/form-controls/QuantityField";
+import { LanguageContext } from "context/LanguageContext";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -11,6 +12,7 @@ AddToCartForm.propTypes = {
 };
 
 function AddToCartForm({ onSubmit = null }) {
+    const { defaultLanguage } = useContext(LanguageContext);
     const schema = yup.object().shape({
         quantity: yup.number().required('Please enter quantity')
             .min(1, 'Minimum value is 1')
@@ -43,7 +45,7 @@ function AddToCartForm({ onSubmit = null }) {
                 size="large"
                 style={{ width: '200px' }}
             >
-                Add to cart
+                {defaultLanguage.Add_to_card}
             </Button>
         </form>
     );

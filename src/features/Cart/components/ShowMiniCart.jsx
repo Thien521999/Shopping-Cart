@@ -1,23 +1,25 @@
 import { Box, Button } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import { useDispatch } from 'react-redux';
 import { hideMiniCart } from '../cartSlice';
+import { LanguageContext } from 'context/LanguageContext';
 
 ShowMiniCart.propTypes = {
     onClose: PropTypes.func,
 };
 
-function ShowMiniCart({onClose = null}) {
+function ShowMiniCart({ onClose = null }) {
     const history = useHistory();
     const dispatch = useDispatch();
+    const { defaultLanguage } = useContext(LanguageContext);
 
     const handleClickIconClose = () => {
         console.log('haha');
-        if(!onClose) return ;
+        if (!onClose) return;
         onClose();
     }
 
@@ -30,10 +32,10 @@ function ShowMiniCart({onClose = null}) {
 
         <Box component="div" className="cart__dialog">
             <Box component="div" className="icon">
-                <CloseIcon 
-                    fontSize="small" 
+                <CloseIcon
+                    fontSize="small"
                     className="icon__close"
-                    onClick = {handleClickIconClose}    
+                    onClick={handleClickIconClose}
                 />
             </Box>
 
@@ -41,18 +43,18 @@ function ShowMiniCart({onClose = null}) {
                 <li className="icon__success">
                     <CheckCircleOutlineIcon />
                 </li>
-                <li>Thêm vào giỏ hàng thành công!</li>
+                <li>{defaultLanguage.Add_to_cart_successfully}</li>
             </ul>
 
-            <Button 
-                variant="contained" 
-                color="secondary" 
-                className="btn" 
+            <Button
+                variant="contained"
+                color="secondary"
+                className="btn"
                 size="small"
                 onClick={moveToCartPage}
-                
+
             >
-                Xem giỏ hàng và thanh toán
+                {defaultLanguage.View_cart_and_checkout}
             </Button>
         </Box>
 

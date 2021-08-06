@@ -1,3 +1,4 @@
+// libs
 import { Badge, Box, IconButton, Menu, MenuItem } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
@@ -7,24 +8,28 @@ import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { AccountCircle, Close } from "@material-ui/icons";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeIcon from '@material-ui/icons/Home';
-import HowToRegIcon from '@material-ui/icons/HowToReg';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import HomeIcon from "@material-ui/icons/Home";
+import HowToRegIcon from "@material-ui/icons/HowToReg";
 import MenuIcon from "@material-ui/icons/Menu";
-import PhotoAlbumIcon from '@material-ui/icons/PhotoAlbum';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
+import PhotoAlbumIcon from "@material-ui/icons/PhotoAlbum";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
+import React, { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, useHistory } from "react-router-dom";
+// components
 import Login from "features/Auth/components/Login";
 import Register from "features/Auth/components/Register";
 import { logout } from "features/Auth/userSlice";
 import { hideMiniCart } from "features/Cart/cartSlice";
 import ShowMiniCart from "features/Cart/components/ShowMiniCart";
 import { cartItemCountSelector } from "features/Cart/selectors";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useHistory } from "react-router-dom";
+// style
 import "./index.css";
-import './responsive.css';
+import "./responsive.css";
+import { LanguageContext } from "context/LanguageContext";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,9 +49,10 @@ const MODE = {
     REGISTER: "register",
 };
 
-export default function Header() {
+const Header = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { defaultLanguage, handleChangeVN, handleChangeEN } = useContext(LanguageContext);
 
     //Kiem tra user dang nhap hay chua dang nhap
     const loggedInUser = useSelector((state) => state.user.current);
@@ -58,9 +64,9 @@ export default function Header() {
     const [open, setOpen] = useState(false);
     const [mode, setMode] = useState(MODE.LOGIN);
     const [anchorEL, setAnchorEL] = useState(null);
+    const [isOpen, setIsOpen] = useState(null);
 
-    const showCart = useSelector(state => state.cart.showMiniCart);
-    //console.log(showCart);
+    const showCart = useSelector((state) => state.cart.showMiniCart);
 
     const handleUserClick = (e) => {
         setAnchorEL(e.currentTarget);
@@ -68,6 +74,14 @@ export default function Header() {
 
     const handleCloseMenu = () => {
         setAnchorEL(null);
+    };
+
+    const handleClickLanguage = (event) => {
+        setIsOpen(event.currentTarget);
+    };
+
+    const handleCloseLanguage = () => {
+        setIsOpen(null);
     };
 
     const handleClickOpen = () => {
@@ -84,28 +98,26 @@ export default function Header() {
 
         setAnchorEL(null);
 
-        history.push('/');
-
-
+        history.push("/");
     };
 
     const handleClickCart = () => {
-        history.push('/cart');
+        history.push("/cart");
     };
 
     const handleClickHome = () => {
-        history.push('/');
-    }
+        history.push("/");
+    };
     const handleClickTodo = () => {
-        history.push('/todos');
-    }
+        history.push("/todos");
+    };
     const handleClickAlbum = () => {
-        history.push('/albums');
-    }
+        history.push("/albums");
+    };
 
     const handleCartClose = () => {
         dispatch(hideMiniCart());
-    }
+    };
 
     const classes = useStyles();
 
@@ -124,23 +136,27 @@ export default function Header() {
                     </Typography>
 
                     <NavLink className="link" to="/todos">
-                        <Button color="inherit">Todos</Button>
+                        <Button color="inherit">{defaultLanguage.TODO}</Button>
                     </NavLink>
 
                     <NavLink className="link" to="/albums">
-                        <Button color="inherit">Albums</Button>
+                        <Button color="inherit">{defaultLanguage.ALBUMNS}</Button>
                     </NavLink>
+
+                    <Box component="span">
+                        <Button aria-controls="simple-menu" aria-haspopup="true" color="inherit" onClick={handleClickLanguage}>
+                            {defaultLanguage.LANGUAGE}
+                        </Button>
+                    </Box>
 
                     {/* Chưa đăng nhập */}
                     {!isLoggedIn && (
                         <Box component="span" className="icon-login">
                             <Button color="inherit" onClick={handleClickOpen}>
-                                Login
+                                {defaultLanguage.LOGIN}
                             </Button>
                         </Box>
                     )}
-
-
 
                     {/*show Icon đã đăng nhập */}
                     {isLoggedIn && (
@@ -150,11 +166,7 @@ export default function Header() {
                     )}
 
                     {/* show mini cart */}
-                    <Box className="cartMini">
-                        {showCart && (
-                            <ShowMiniCart onClose={handleCartClose} />
-                        )}
-                    </Box>
+                    <Box className="cartMini">{showCart && <ShowMiniCart onClose={handleCartClose} />}</Box>
 
                     <Box className="cart">
                         <IconButton aria-label="show 4 new mails" color="inherit" onClick={handleClickCart}>
@@ -179,26 +191,45 @@ export default function Header() {
                 </header>
                 <ul className="nav__mobile-list">
                     <li className="nav__mobile-item" onClick={handleClickHome}>
-                        <label className="icon__item" htmlFor="nav-mobile-input"><HomeIcon /></label>
-                        <label className="text__item" htmlFor="nav-mobile-input">Home</label>
+                        <label className="icon__item" htmlFor="nav-mobile-input">
+                            <HomeIcon />
+                        </label>
+                        <label className="text__item" htmlFor="nav-mobile-input">
+                            {defaultLanguage.Home}
+                        </label>
                     </li>
                     <li className="nav__mobile-item" onClick={handleClickTodo}>
-                        <label className="icon__item" htmlFor="nav-mobile-input"><WorkOutlineIcon /></label>
-                        <label className="text__item" htmlFor="nav-mobile-input">Todos</label>
+                        <label className="icon__item" htmlFor="nav-mobile-input">
+                            <WorkOutlineIcon />
+                        </label>
+                        <label className="text__item" htmlFor="nav-mobile-input">
+                            {defaultLanguage.TODO}
+                        </label>
                     </li>
                     <li className="nav__mobile-item" onClick={handleClickAlbum}>
-                        <label className="icon__item" htmlFor="nav-mobile-input"><PhotoAlbumIcon /></label>
-                        <label className="text__item" htmlFor="nav-mobile-input">Albums</label>
+                        <label className="icon__item" htmlFor="nav-mobile-input">
+                            <PhotoAlbumIcon />
+                        </label>
+                        <label className="text__item" htmlFor="nav-mobile-input">
+                            Albums
+                        </label>
                     </li>
                     <li className="nav__mobile-item" onClick={handleClickOpen}>
-                        <label className="icon__item" htmlFor="nav-mobile-input"><HowToRegIcon /></label>
-                        <label className="text__item" htmlFor="nav-mobile-input">Login</label>
+                        <label className="icon__item" htmlFor="nav-mobile-input">
+                            <HowToRegIcon />
+                        </label>
+                        <label className="text__item" htmlFor="nav-mobile-input">
+                            Login
+                        </label>
                     </li>
                     <li className="nav__mobile-item" onClick={handleLogoutClick}>
-                        <label className="icon__item" htmlFor="nav-mobile-input"><ExitToAppIcon /></label>
-                        <label className="text__item" htmlFor="nav-mobile-input">Logout</label>
+                        <label className="icon__item" htmlFor="nav-mobile-input">
+                            <ExitToAppIcon />
+                        </label>
+                        <label className="text__item" htmlFor="nav-mobile-input">
+                            Logout
+                        </label>
                     </li>
-
                 </ul>
             </nav>
 
@@ -219,19 +250,38 @@ export default function Header() {
                 }}
                 getContentAnchorEl={null}
             >
-                <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
-                <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+                <MenuItem onClick={handleCloseMenu}>{defaultLanguage.MY_ACCOUNT}</MenuItem>
+                <MenuItem onClick={handleLogoutClick}>{defaultLanguage.LOGOUT}</MenuItem>
+            </Menu>
+
+            <Menu
+                id="demo-positioned-menu"
+                keepMounted
+                isOpen={isOpen}
+                open={Boolean(isOpen)}
+                onClose={handleCloseLanguage}
+                anchorOrigin={{
+                    vertical: "top", //theo chieu doc
+                    horizontal: "right", //nam ngang
+                }}
+                transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                }}
+                getContentAnchorEl={null}
+            >
+                <MenuItem onClick={handleChangeVN}>VIETNAME</MenuItem>
+                <MenuItem onClick={handleChangeEN}>ENGLISH</MenuItem>
             </Menu>
 
             {/* dialog - Sign in - Sign up */}
             <Dialog
-                disableBackdropClick
-                disableEscapeKeyDown
                 open={open}
                 onClose={handleClose}
+                disableBackdropClick
+                disableEscapeKeyDown
                 aria-labelledby="form-dialog-title"
             >
-                {/* Icon x goc tren ben phai */}
                 <IconButton className={classes.closeButton} onClick={handleClose}>
                     <Close />
                 </IconButton>
@@ -239,10 +289,10 @@ export default function Header() {
                 <DialogContent>
                     {mode === MODE.REGISTER && (
                         <>
-                            <Register closeDialog={handleClose} /> {/** closeDialog: dùng de dong dialog */}
+                            <Register closeDialog={handleClose} />
                             <Box textAlign="center">
                                 <Button color="primary" onClick={() => setMode(MODE.LOGIN)}>
-                                    Already have an account. Login here.
+                                    {defaultLanguage.Already_have_an_account_Login_here}
                                 </Button>
                             </Box>
                         </>
@@ -253,7 +303,7 @@ export default function Header() {
                             <Login closeDialog={handleClose} />
                             <Box textAlign="center">
                                 <Button color="primary" onClick={() => setMode(MODE.REGISTER)}>
-                                    Don't have an account. Register here.
+                                    {defaultLanguage.Do_not_have_an_account_Register_here}
                                 </Button>
                             </Box>
                         </>
@@ -262,4 +312,6 @@ export default function Header() {
             </Dialog>
         </div>
     );
-}
+};
+
+export default Header;

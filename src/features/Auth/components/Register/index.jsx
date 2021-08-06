@@ -6,7 +6,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import RegisterForm from '../RegisterForm';
 
-
 Register.propTypes = {
     closeDialog: PropTypes.func,
 };
@@ -25,7 +24,8 @@ function Register(props) {
             const action = register(values);//values : là những giá trị trên form 
             const resultAction = await dispatch(action); //resultAction:là action object
             const user = unwrapResult(resultAction); //unwrapResult : tra ve kết quả payload nếu success là fullfiled ,throw error nếu rejected
-            console.log('New user:', user);
+            // console.log('New user:', user);
+
 
             //sau khi dang ky xong có the lam tiep cac buoc nhu :dong cửa sổ ,hiển thị message success... có thể làm tiếp dưới này
 

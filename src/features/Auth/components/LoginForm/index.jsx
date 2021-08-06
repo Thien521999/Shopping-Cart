@@ -3,8 +3,9 @@ import { Avatar, Button, LinearProgress, makeStyles, Typography } from "@materia
 import { LockOutlined } from "@material-ui/icons";
 import InputField from "components/form-controls/InputField";
 import PasswordField from "components/form-controls/PasswordField";
+import { LanguageContext } from "context/LanguageContext";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -38,6 +39,7 @@ LoginForm.propTypes = {
 
 function LoginForm(props) {
     const classes = useStyles();
+    const { defaultLanguage } = useContext(LanguageContext);
     const schema = yup.object().shape({
         identifier: yup.string().required("Please enter your email").email("Please enter a valid email address."),
         password: yup.string().required("Please enter your password"),
@@ -69,9 +71,9 @@ function LoginForm(props) {
                 <LockOutlined />
             </Avatar>
             <Typography className={classes.title} component="h3" variant="h5">
-                Sign In
+                {defaultLanguage.SIGN_IN}
             </Typography>
-            
+
             <form onSubmit={form.handleSubmit(handleSubmit)}>
                 <InputField name="identifier" label="Email" form={form} />
                 <PasswordField name="password" label="Password" form={form} />
@@ -85,7 +87,7 @@ function LoginForm(props) {
                     fullWidth
                     size="large"
                 >
-                    Sign In
+                    {defaultLanguage.SIGN_IN}
                 </Button>
             </form>
         </div>

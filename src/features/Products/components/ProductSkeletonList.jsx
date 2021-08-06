@@ -1,7 +1,7 @@
+import React from 'react';
 import { Box, Grid } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 ProductSkeletonList.propTypes = {
     length: PropTypes.number, //so item muon show trong 1 trang

@@ -12,7 +12,7 @@ ProductFeature.propTypes = {
 };
 
 function ProductFeature(props) {
-    const match = useRouteMatch();
+    const match = useRouteMatch();//Lam viec voi nested routing
 
     return (
         <Box pt={4} >

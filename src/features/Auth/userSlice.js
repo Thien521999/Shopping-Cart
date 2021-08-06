@@ -40,7 +40,7 @@ const userSlice = createSlice({
       //clear local storage
       localStorage.removeItem(Storekeys.TOKEN);
       localStorage.removeItem(Storekeys.USER);
-      localStorage.removeItem("products")
+      localStorage.removeItem("products");
       //cap nhat state ve object rong
       state.current = {};
     },

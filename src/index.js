@@ -1,3 +1,4 @@
+import LanguageProvider from "context/LanguageContext";
 import { SnackbarProvider } from "notistack";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -13,7 +14,9 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <SnackbarProvider anchorOrigin={{ vertical: "top", horizontal: "right" }}>
-          <App />
+          <LanguageProvider>
+            <App />
+          </LanguageProvider>
         </SnackbarProvider>
       </BrowserRouter>
     </Provider>

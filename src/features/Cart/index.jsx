@@ -1,5 +1,6 @@
 import { Box, Button, Container, Grid, makeStyles, Paper } from '@material-ui/core';
-import React from 'react';
+import { LanguageContext } from 'context/LanguageContext';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import CartItem from './components/CartItem';
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 function CartFeature(props) {
     const classes = useStyles();
+    const { defaultLanguage } = useContext(LanguageContext);
 
     //const dispatch = useDispatch();
     const history = useHistory();
@@ -58,7 +60,7 @@ function CartFeature(props) {
                     <Grid item className={classes.left} >
                         <Box component="div">
                             <h2 className="title">
-                                GIỎ HÀNG
+                                {defaultLanguage.Card}
                                 <span className="product-count"> ({numberItemInCart} sản phẩm)</span>
                             </h2>
                         </Box>
@@ -68,7 +70,7 @@ function CartFeature(props) {
                                 infoProduct.map((product, idx) => (
                                     <CartItem
                                         key={product.id}
-                                        product={product}                                    
+                                        product={product}
                                     />
                                 ))
                             )
@@ -79,9 +81,9 @@ function CartFeature(props) {
                                 <Paper elevation={0} >
                                     <Box component="div" className="empty">
                                         <img src="https://salt.tikicdn.com/desktop/img/mascot@2x.png" alt="" className="empty__img" />
-                                        <p className="empty__note">Không có sản phẩm nào trong giỏ hàng của bạn</p>
+                                        <p className="empty__note">{defaultLanguage.There_are_no_products_in_your_cart}</p>
                                         <Button variant="contained" color="secondary" className="empty__btn" size="medium" onClick={handleClickContinueBuy}>
-                                            Tiếp tục mua sắm
+                                            {defaultLanguage.Continue_shopping}
                                         </Button>
                                     </Box>
                                 </Paper>

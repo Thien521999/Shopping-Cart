@@ -1,6 +1,7 @@
 import { Box, Checkbox, FormControlLabel, makeStyles, Typography } from '@material-ui/core';
+import { LanguageContext } from 'context/LanguageContext';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 
 FilterByService.propTypes = {
     filters: PropTypes.object.isRequired, //để biết dc checkbox nào dang check
@@ -25,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function FilterByService({ filters, onChange = null }) {
+    const { defaultLanguage } = useContext(LanguageContext);
     const classes = useStyles();
 
     const handleChange = (e) => {
@@ -36,12 +38,12 @@ function FilterByService({ filters, onChange = null }) {
 
     return (
         <Box className={classes.root}>
-            <Typography variant="subtitle2">DỊCH VỤ</Typography>
+            <Typography variant="subtitle2">{defaultLanguage.Service}</Typography>
 
             <ul className={classes.list}>
                 {
-                    [{ value: 'isPromotion', label: 'Có khuyến mãi' },
-                    { value: 'isFreeShip', label: 'Vận chuyễn miễn phí' }].map((service) => (
+                    [{ value: 'isPromotion', label: `${defaultLanguage.There_are_promotions}` },
+                    { value: 'isFreeShip', label: `${defaultLanguage.Free_shipping}` }].map((service) => (
                         <li key={service.value}>
                             <FormControlLabel
                                 control={
