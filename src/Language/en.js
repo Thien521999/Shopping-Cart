@@ -37,7 +37,6 @@ export const EN = {
   Reset: "Reset",
   Card: "Card",
   Continue_shopping: "Continue_shopping",
-  Service: "Service",
   There_are_no_products_in_your_cart: "There are no products in your cart",
   Add_to_cart_successfully: "Add to cart successfully!",
   View_cart_and_checkout: "View_cart_and_checkout",

@@ -24,7 +24,7 @@ const cartSlice = createSlice({
       } else {
         //add to cart
         const item = state.cartItems.unshift(newItem);
-        // console.log(item);
+        console.log(item);
       }
       localStorage.setItem("products", JSON.stringify(state.cartItems));
     },
