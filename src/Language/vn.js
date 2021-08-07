@@ -37,7 +37,6 @@ export const VN = {
   Reset: "Cập nhật lại",
   Card: "Giỏ hàng",
   Continue_shopping: "Tiếp tục mua sắm",
-  Service: "Dịch vụ",
   There_are_no_products_in_your_cart: "Không có sản phẩm nào trong giỏ hàng của bạn",
   Add_to_cart_successfully: "Thêm vào giỏ hàng thành công!",
   View_cart_and_checkout: "Xem giỏ hàng và thanh toán",
