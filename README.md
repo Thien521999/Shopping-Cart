@@ -30,6 +30,8 @@ Link: https://mini-shopping-cart.vercel.app/
 
 -Dùng thư viện axios gọi api lấy danh sách sản phẩm
 
+-Dùng context làm đa ngôn ngữ(EN, VN)
+
 -Authentication module: 
 <ul>
   <li>đăng ký</li>
