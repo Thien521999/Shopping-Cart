@@ -36,7 +36,6 @@ function JobFeatures(props) {
             status: newJobList[idx].status === 'new' ? 'completed' : 'new',
         };
         newJobList[idx] = newJob;
-        console.log(newJobList[idx]);
         setJobList(newJobList)
     }
 
@@ -51,7 +50,6 @@ function JobFeatures(props) {
     }
 
     const renderedStatus = jobList.filter(job => filteredStatus === 'all' || filteredStatus === job.status);
-    console.log(renderedStatus);
 
     return (
         <div>

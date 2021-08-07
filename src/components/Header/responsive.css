@@ -39,3 +39,16 @@
         display: none;
     }
 }
+
+/* Mobile */
+@media (max-width:320px){
+    .title {
+        margin-bottom: 3px !important;
+    }
+    .title__header {
+        font-size: 14px;
+    }
+    .btn-language {
+        font-size: 11px;
+    }
+}

@@ -5,6 +5,9 @@ import { formatPrice } from 'features/utils';
 import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
+// import { useSelector } from 'react-redux';
+// import { createSelector } from "reselect";
+// import { cartItemsCountSelector, cartItemsTotalSelector } from './CardSelector';
 
 CartPay.propTypes = {
     cartTotal: PropTypes.number,

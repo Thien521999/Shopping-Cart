@@ -18,7 +18,6 @@ function ShowMiniCart({ onClose = null }) {
     const { defaultLanguage } = useContext(LanguageContext);
 
     const handleClickIconClose = () => {
-        console.log('haha');
         if (!onClose) return;
         onClose();
     }

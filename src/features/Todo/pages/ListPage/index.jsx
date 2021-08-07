@@ -46,14 +46,12 @@ function ListPage(props) {
     //clone current array the new one
     const newTodoList = [...todoList];
 
-    //console.log(todo, idx);
     //toggle state
     const newTodo = {
       ...newTodoList[idx],
       status: newTodoList[idx].status === "new" ? "completed" : "new",
     };
     newTodoList[idx] = newTodo;
-    console.log(newTodo);
     //update todo List
     setTodoList(newTodoList);
   };
@@ -90,13 +88,12 @@ function ListPage(props) {
   }, [todoList, filteredStatus]);
 
   const handleTodoFormSubmit = (values) => {
-    console.log("Form submit :", values);
+    // console.log("Form submit :", values);
     const newTodo = {
       id: todoList.length + 1,
       title: values.title,
       status: 'new',
     }
-    console.log(newTodo);
 
     const newTodoList = [...todoList, newTodo];
 

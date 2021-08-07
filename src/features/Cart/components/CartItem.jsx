@@ -1,4 +1,5 @@
 import { Box, Paper } from '@material-ui/core';
+import * as yup from 'yup';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { STATIC_HOST, THUMBNAIL_PLACEHOLDER_130 } from "constants/index";
 import { formatPrice } from 'features/utils';
@@ -6,9 +7,13 @@ import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../cartSlice';
+import { removeFromCart, setQuantity } from '../cartSlice';
+
 import './index.css';
 import './responsive.css';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import QuantityField from 'components/form-controls/QuantityField';
 
 CartItem.propTypes = {
     product: PropTypes.object,
@@ -19,11 +24,7 @@ function CartItem({ product = {}, onDelete = null, idx = 0 }) {
     const dispatch = useDispatch();
 
     // Mảng cac san pham,
-
-
     const handleClickRemove = (item, idx) => {
-        // console.log(item, idx);
-
         const action = removeFromCart(idx);
         dispatch(action);
     }
@@ -31,6 +32,31 @@ function CartItem({ product = {}, onDelete = null, idx = 0 }) {
     const handleChooseColor = () => {
         return enqueueSnackbar('Mình chưa làm chức năng này,hehe', { variant: 'info' });
     };
+
+    const schema = yup.object().shape({
+        quantity: yup
+            .number()
+            .required('Nhập số lượng muốn mua!')
+            .min(1, 'Số lượng ít nhất là 1!')
+            .typeError('Vui lòng nhập đúng số lượng!'),
+    })
+
+    const form = useForm({
+        mode: "onSubmit",
+        reValidateMode: "onChange",
+        defaultValues: {
+            quantity: product.quantity,
+        },
+        resolver: yupResolver(schema),
+    })
+
+    const handleChangeQuantity = (newValue) => {
+        const action = setQuantity({
+            id: product.id,
+            quantity: newValue,
+        });
+        dispatch(action);
+    }
 
 
     // const { enqueueSnackbar } = useSnackbar();
@@ -90,20 +116,22 @@ function CartItem({ product = {}, onDelete = null, idx = 0 }) {
                                     </p>
                                 </Box>
                                 <Box component="div" className="cart-product__qty">
-                                    <Box component="div" className="qty">
+                                    {/* <Box component="div" className="qty">
                                         <span className="qty__decrease qty--disable">-</span>
                                         <input type="tel" className="qty__input" placeholder={product.quantity} />
                                         <span className="qty__increase qty--disable">+</span>
-                                    </Box>
+                                    </Box> */}
 
-                                    {/* <form>
-                                        <QuantityField
-                                            name="quantity"
-                                            label="Quantity"
-                                            form={form}
-                                        // onSubmit={handleSubmit}
-                                        />
-                                    </form> */}
+                                    <Box component="div" className="qty">
+                                        <form>
+                                            <QuantityField
+                                                name="quantity"
+                                                label="Quantity"
+                                                form={form}
+                                                onChange={handleChangeQuantity}
+                                            />
+                                        </form>
+                                    </Box>
                                 </Box>
                             </Box>
                         </Box>
@@ -124,7 +152,7 @@ function CartItem({ product = {}, onDelete = null, idx = 0 }) {
                             </Box>
                             <Box component="div" className="cart-product-mobile__note">
                                 Chỉ còn 1 sản phẩm
-                                            </Box>
+                            </Box>
                             <Box component="div" className="cart-product-mobile__details">
                                 <Box component="div" className="cart-product-mobile__qty">
                                     <Box component="div" className="mobile__qty">

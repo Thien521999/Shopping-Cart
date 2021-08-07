@@ -21,7 +21,7 @@ PasswordField.propTypes = {
 function PasswordField(props) {
     const { form, name, label, disabled } = props;
     //Khi ma field da touch(co nghia la focus,chinh sua rui)rui thì nó tinh la touch
-    const { errors } = form;
+    const { errors } = form.formState;
     const hasError = !!errors[name];
     //console.log(errors[name], formState.touched[name]);
 
@@ -39,8 +39,9 @@ function PasswordField(props) {
                 control={form.control}  //bat buoc phai co(lay tu form.control)
                 //as={OutlinedInput} //ban muon su dung UI Libery nào
 
-                render={({ onChange, onBlur, value, name }) => (
+                render={({ field }) => (
                     <OutlinedInput
+                        {...field}
                         id={name}
                         type={showPassword ? 'text' : 'password'}
                         label={label}
@@ -55,13 +56,7 @@ function PasswordField(props) {
                                 </IconButton>
                             </InputAdornment>
                         }
-
                         disabled={disabled}
-
-                        name={name}
-                        value={value}
-                        onBlur={onBlur}
-                        onChange={onChange}
                     />
                 )}
             />

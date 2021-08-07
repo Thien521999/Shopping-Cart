@@ -23,7 +23,7 @@ function PostListFeature(props) {
     })
 
     const handlePageChange = (newPage) => {
-        console.log('New Page', newPage);
+        // console.log('New Page', newPage);
         setFilter({
             ...filter,
             _page: newPage,
@@ -38,7 +38,6 @@ function PostListFeature(props) {
                 const requestUrl = `http://js-post-api.herokuapp.com/api/posts?${paramString}`;
                 const response = await fetch(requestUrl);
                 const responseJSON = await response.json();
-                console.log({ responseJSON });
 
                 const { data, pagination } = responseJSON;
                 setPostList(data);
@@ -51,14 +50,14 @@ function PostListFeature(props) {
     }, [filter]);
 
     const handleFilterChange = (newFilters) => {
-        console.log('New Filters', newFilters);
+        // console.log('New Filters', newFilters);
         setFilter({
             ...filter,
             _page: 1,
             title_like: newFilters.search,
         })
     }
-    
+
 
     return (
         <div>

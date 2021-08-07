@@ -19,20 +19,17 @@ const cartSlice = createSlice({
 
       const index = state.cartItems.findIndex((x) => x.id === newItem.id);
       if (index >= 0) {
-        //console.log(" >= 0");
         //increate quantity
         state.cartItems[index].quantity += newItem.quantity;
       } else {
-        //console.log(" < 0 ");
         //add to cart
-        const item = state.cartItems.push(newItem);
-        console.log(item);
+        const item = state.cartItems.unshift(newItem);
+        // console.log(item);
       }
       localStorage.setItem("products", JSON.stringify(state.cartItems));
     },
     setQuantity(state, action) {
       const { id, quantity } = action.payload;
-      console.log(typeof state.cartItems);
 
       //Tim vi tri
       const index = state.cartItems.findIndex((x) => x.id === id);
@@ -53,5 +50,5 @@ const cartSlice = createSlice({
 });
 
 const { actions, reducer } = cartSlice;
-export const { showMiniCart, hideMiniCart, addToCart, setQuantity, removeFromCart } = actions; //name eport
+export const { showMiniCart, hideMiniCart, addToCart, setQuantity, removeFromCart } = actions; //name export
 export default reducer; //default export

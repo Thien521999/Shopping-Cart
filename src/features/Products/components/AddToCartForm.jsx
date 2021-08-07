@@ -14,7 +14,9 @@ AddToCartForm.propTypes = {
 function AddToCartForm({ onSubmit = null }) {
     const { defaultLanguage } = useContext(LanguageContext);
     const schema = yup.object().shape({
-        quantity: yup.number().required('Please enter quantity')
+        quantity: yup
+            .number()
+            .required('Please enter quantity')
             .min(1, 'Minimum value is 1')
             .typeError('Please enter a number'),
     });
@@ -27,7 +29,7 @@ function AddToCartForm({ onSubmit = null }) {
     });
 
     const handleSubmit = async (values) => {
-        //console.log('TODO FORM: ', values);
+        // console.log('TODO FORM: ', values);
         if (onSubmit) {
             await onSubmit(values);
         }

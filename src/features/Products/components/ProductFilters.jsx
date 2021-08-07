@@ -22,7 +22,6 @@ function ProductFilters({ filters, onChange = null }) {
     }
 
     const handleChange = (values) => {
-        console.log(values);
         if (!onChange) return;
         onChange(values);
     }

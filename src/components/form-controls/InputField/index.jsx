@@ -13,10 +13,9 @@ InputField.propTypes = {
 
 function InputField(props) {
     const { form, name, label, disabled } = props;
-
     //Lấy thông tin error
     //Khi ma field da touch(co nghia la focus,chinh sua rui)rui thì nó tinh la touch
-    const { errors } = form;
+    const { errors } = form.formState;
     const hasError = errors[name];
 
     // const {errors, formState} = form;
@@ -34,24 +33,17 @@ function InputField(props) {
             //as={TextField} //ban muon su dung UI Libery nào.bat buoc phai co
             //dung as thi ko can phai bind onChange, onblur, value,
             //con render thi phai truyen vao
-
-            render={({ onChange, onBlur, value, name }) => (
+            render={({ field }) => (
                 <TextField              //ban muon su dung UI Libery nào.bat buoc phai co
-                    margin="normal"     
-                    variant="outlined"  
-                    fullWidth           
-                    label={label}       
-                    disabled={disabled} 
-
+                    {...field}
+                    margin="normal"
+                    variant="outlined"
+                    fullWidth
+                    label={label}
+                    disabled={disabled}
                     //de show error
                     error={!!hasError} //!phu dinh tra ve true false
                     helperText={errors[name]?.message} //?. de kiem tra th có hay ko(optional)
-
-                    //con render thi phai truyen vao
-                    name={name}
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
                 />
             )}
         />

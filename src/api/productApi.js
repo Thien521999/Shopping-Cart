@@ -11,7 +11,6 @@ const productApi = {
 
     // Fetch product list + count (do dùng thư viên strapi api)
     const productList = await axiosClient.get("/products", { params: newParams });
-    console.log(productList);
     const count = await axiosClient.get("/products/count", { params: newParams });
 
     // Build response and return

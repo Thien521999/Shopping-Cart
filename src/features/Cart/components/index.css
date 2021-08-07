@@ -105,8 +105,8 @@ html{
 }
 
 .cart-product__price {
+    margin-top: 17px;
     text-align: right;
-    margin-right: 25px;
 }
 
 .cart-products__real-prices {
@@ -142,8 +142,8 @@ html{
 .qty{
     display: flex;
     flex-wrap: nowrap;
-    border: 1px solid rgb(200, 200, 200);
-    border-radius: 3px;
+    /* border: 1px solid rgb(200, 200, 200);
+    border-radius: 3px; */
 }
 
 .qty__decrease {

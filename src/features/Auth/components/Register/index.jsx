@@ -15,7 +15,7 @@ function Register(props) {
     const { enqueueSnackbar } = useSnackbar();
 
     const handleSubmit = async (values) => {
-        console.log("Form submit:", values);
+        // console.log("Form submit:", values);
 
         try {
             //auto set username = email
@@ -39,7 +39,7 @@ function Register(props) {
             enqueueSnackbar('Success register', { variant: 'success' });
 
         } catch (error) {
-            console.log('Failed to register:', error);
+            // console.log('Failed to register:', error);
 
             //show thong báo khi dang ky thất bại
             enqueueSnackbar(error.message, { variant: 'error' });

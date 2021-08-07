@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { decreate, increase } from './counterSlice';
 
 CouterFeature.propTypes = {
-    
+
 };
 
 function CouterFeature(props) {
@@ -12,13 +12,11 @@ function CouterFeature(props) {
 
     const handleIncreaseClick = () => {
         const action = increase(); //action creater
-        console.log(action);
         dispatch(action); //gui action nay len redux
     }
 
     const handleDecreaseClick = () => {
         const action = decreate(); //action creater
-        console.log('action');
         dispatch(action); //gui action nay len redux
     }
     return (

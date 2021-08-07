@@ -22,14 +22,13 @@ function ListJobFeatures(props) {
     ]);
 
     const handleJobClick = (todo, idx) => {
-        console.log(idx);
         const newTodoList = [...todoList];
         newTodoList.splice(idx, 1); //tai vi tri đó,xoa 1 phan tu
         setTodoList(newTodoList);
     };
 
     const handleTodoFormSubmit = (formValues) => {
-        console.log("Form Submit: ", formValues);
+        // console.log("Form Submit: ", formValues);
 
         const newJob = {
             id: todoList.length + 1,
@@ -42,7 +41,7 @@ function ListJobFeatures(props) {
     };
 
     const handleSearchChange = (formValue) => {
-        console.log('value', formValue);
+        // console.log('value', formValue);
     }
 
     return (

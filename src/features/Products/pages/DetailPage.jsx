@@ -56,9 +56,9 @@ function DetailPage(props) {
     const { product, loading } = useProductDetail(productId);
 
     if (loading) {
-        return  <Box className={classes.loading}>
-                    <LinearProgress />
-                </Box>;
+        return <Box className={classes.loading}>
+            <LinearProgress />
+        </Box>;
     }
 
     const handleAddToCartSubmit = (formValues) => {

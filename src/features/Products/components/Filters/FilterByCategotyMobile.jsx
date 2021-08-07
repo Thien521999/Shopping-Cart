@@ -9,24 +9,24 @@ FilterByCategotyMobile.propTypes = {
 };
 
 //const useStyles = makeStyles(theme => ({
-    // root: {
-    //     padding: theme.spacing(2),
-    // },
+// root: {
+//     padding: theme.spacing(2),
+// },
 
-    // menu: {
-    //     margin: 0,
-    //     padding: 0,
-    //     listStyleType: 'none',
-    //     '& > li': {
-    //         marginTop: theme.spacing(1),
-    //         transition: 'all 0.45s ease 0s',
+// menu: {
+//     margin: 0,
+//     padding: 0,
+//     listStyleType: 'none',
+//     '& > li': {
+//         marginTop: theme.spacing(1),
+//         transition: 'all 0.45s ease 0s',
 
-    //         '&:hover': {
-    //             cursor: 'pointer',
-    //             color: theme.palette.primary.dark,
-    //         }
-    //     }
-    // },
+//         '&:hover': {
+//             cursor: 'pointer',
+//             color: theme.palette.primary.dark,
+//         }
+//     }
+// },
 //}))
 
 function FilterByCategotyMobile({ onChange = null }) {

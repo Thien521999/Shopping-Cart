@@ -50,22 +50,20 @@ const MODE = {
 };
 
 const Header = () => {
+    const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
-    const { defaultLanguage, handleChangeVN, handleChangeEN } = useContext(LanguageContext);
-
-    //Kiem tra user dang nhap hay chua dang nhap
-    const loggedInUser = useSelector((state) => state.user.current);
-    // console.log(loggedInUser);
-    const isLoggedIn = !!loggedInUser.id; //neu có id tức là đã đănng nhập và nguoc lai
-
-    const cartItemsCount = useSelector(cartItemCountSelector);
-
     const [open, setOpen] = useState(false);
     const [mode, setMode] = useState(MODE.LOGIN);
     const [anchorEL, setAnchorEL] = useState(null);
     const [isOpen, setIsOpen] = useState(null);
 
+    const { defaultLanguage, handleChangeVN, handleChangeEN } = useContext(LanguageContext);
+    //Kiem tra user dang nhap hay chua dang nhap
+    const loggedInUser = useSelector((state) => state.user.current);
+    // console.log(loggedInUser);
+    const isLoggedIn = !!loggedInUser.id; //neu có id tức là đã đănng nhập và nguoc lai
+    const cartItemsCount = useSelector(cartItemCountSelector);
     const showCart = useSelector((state) => state.cart.showMiniCart);
 
     const handleUserClick = (e) => {
@@ -119,8 +117,6 @@ const Header = () => {
         dispatch(hideMiniCart());
     };
 
-    const classes = useStyles();
-
     return (
         <div className={classes.root}>
             <AppBar position="static" className="nav__header">
@@ -144,8 +140,8 @@ const Header = () => {
                     </NavLink>
 
                     <Box component="span">
-                        <Button aria-controls="simple-menu" aria-haspopup="true" color="inherit" onClick={handleClickLanguage}>
-                            {defaultLanguage.LANGUAGE}
+                        <Button className="link" aria-controls="simple-menu" aria-haspopup="true" color="inherit" onClick={handleClickLanguage}>
+                            <span className="btn-language">{defaultLanguage.LANGUAGE}</span>
                         </Button>
                     </Box>
 
@@ -195,7 +191,7 @@ const Header = () => {
                             <HomeIcon />
                         </label>
                         <label className="text__item" htmlFor="nav-mobile-input">
-                            {defaultLanguage.Home}
+                            {defaultLanguage.HOME}
                         </label>
                     </li>
                     <li className="nav__mobile-item" onClick={handleClickTodo}>
@@ -211,7 +207,7 @@ const Header = () => {
                             <PhotoAlbumIcon />
                         </label>
                         <label className="text__item" htmlFor="nav-mobile-input">
-                            Albums
+                            {defaultLanguage.ALBUMNS}
                         </label>
                     </li>
                     <li className="nav__mobile-item" onClick={handleClickOpen}>
@@ -219,7 +215,7 @@ const Header = () => {
                             <HowToRegIcon />
                         </label>
                         <label className="text__item" htmlFor="nav-mobile-input">
-                            Login
+                            {defaultLanguage.LOGIN}
                         </label>
                     </li>
                     <li className="nav__mobile-item" onClick={handleLogoutClick}>
@@ -227,7 +223,7 @@ const Header = () => {
                             <ExitToAppIcon />
                         </label>
                         <label className="text__item" htmlFor="nav-mobile-input">
-                            Logout
+                            {defaultLanguage.LOGOUT}
                         </label>
                     </li>
                 </ul>

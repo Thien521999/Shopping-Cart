@@ -15,13 +15,13 @@ function Login(props) {
     const { enqueueSnackbar } = useSnackbar();
 
     const handleSubmit = async (values) => {
-        console.log("Form submit:", values);
+        // console.log("Form submit:", values);
 
         try {
             const action = login(values);//values : là những giá trị trên form value
             const resultAction = await dispatch(action);
             const user = unwrapResult(resultAction);
-            console.log('New user:', user);
+            // console.log('New user:', user);
 
             //close dialog
             const { closeDialog } = props;

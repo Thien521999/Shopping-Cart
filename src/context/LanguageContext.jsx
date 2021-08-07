@@ -1,6 +1,6 @@
 // libs
-import dictionary from "Language";
 import React, { createContext, useState } from "react";
+import dictionary from "Language";
 
 export const LanguageContext = createContext();
 

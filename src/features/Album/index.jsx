@@ -1,16 +1,16 @@
+// libs
 import React from 'react';
 import AlbumList from './components/AlbumList';
 
-
 AlbumFeature.propTypes = {
-    
+
 };
 
 function AlbumFeature(props) {
     const albumList = [
         {
             id: 1,
-            name : 'VPOP Nhạc Mới Nỗi Loạn',
+            name: 'VPOP Nhạc Mới Nỗi Loạn',
             thumbnailUrl: 'https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/3/e/b/9/3eb9223a485cbd7785859bfb5f82fc86.jpg'
         },
         {
@@ -27,7 +27,7 @@ function AlbumFeature(props) {
 
     return (
         <div>
-            <h2 style={{textAlign:"center"}}>Có thể bạn sẽ thích đấy</h2>
+            <h2 style={{ textAlign: "center" }}>Có thể bạn sẽ thích đấy</h2>
             <AlbumList albumList={albumList} />
         </div>
     );
