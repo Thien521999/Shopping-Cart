@@ -14,7 +14,7 @@ Chạy app trong môi trường test
 Build app ở chế độ production trong thư mục build (để deploy lên server)
 
 # App được deploy trên vercel
-Link: https://shopping-cart-5ga21s6rx-thien521999.vercel.app/
+Link: https://mini-shopping-cart.vercel.app/
 
 # Các chức năng đang dùng
 
@@ -29,6 +29,8 @@ Link: https://shopping-cart-5ga21s6rx-thien521999.vercel.app/
 -Quản lý state với Redux Toolkit
 
 -Dùng thư viện axios gọi api lấy danh sách sản phẩm
+
+-Dùng context làm đa ngôn ngữ(EN, VN)
 
 -Authentication module: 
 <ul>
