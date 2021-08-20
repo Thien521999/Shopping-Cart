@@ -37,7 +37,7 @@ RegisterForm.propTypes = {
     onSubmit: PropTypes.func,
 };
 
-function RegisterForm(props) {
+function RegisterForm({ onSubmit }) {
     const classes = useStyles();
     const { defaultLanguage } = useContext(LanguageContext);
     const schema = yup.object().shape({
@@ -67,7 +67,6 @@ function RegisterForm(props) {
 
     const handleSubmit = async (values) => {
         //console.log('TODO FORM: ', values);
-        const { onSubmit } = props;
         if (onSubmit) {
             await onSubmit(values);
         }

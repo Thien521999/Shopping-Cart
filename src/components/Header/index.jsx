@@ -56,7 +56,7 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const [mode, setMode] = useState(MODE.LOGIN);
     const [anchorEL, setAnchorEL] = useState(null);
-    const [isOpen, setIsOpen] = useState(null);
+    const [isopen, setIsopen] = useState(null);
 
     const { defaultLanguage, handleChangeVN, handleChangeEN } = useContext(LanguageContext);
     //Kiem tra user dang nhap hay chua dang nhap
@@ -75,11 +75,11 @@ const Header = () => {
     };
 
     const handleClickLanguage = (event) => {
-        setIsOpen(event.currentTarget);
+        setIsopen(event.currentTarget);
     };
 
     const handleCloseLanguage = () => {
-        setIsOpen(null);
+        setIsopen(null);
     };
 
     const handleClickOpen = () => {
@@ -251,10 +251,10 @@ const Header = () => {
             </Menu>
 
             <Menu
-                id="demo-positioned-menu"
+                id="simple-menu"
                 keepMounted
-                isOpen={isOpen}
-                open={Boolean(isOpen)}
+                isOpen={isopen}
+                open={Boolean(isopen)}
                 onClose={handleCloseLanguage}
                 anchorOrigin={{
                     vertical: "top", //theo chieu doc
@@ -262,7 +262,7 @@ const Header = () => {
                 }}
                 transformOrigin={{
                     vertical: "top",
-                    horizontal: "right",
+                    horizontal: "center",
                 }}
                 getContentAnchorEl={null}
             >

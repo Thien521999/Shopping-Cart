@@ -19,6 +19,7 @@ export const login = createAsyncThunk("user/login", async (payload) => {
   //payload : là tham so mà thang user nó truyền vào khi nó goi thang login
   //call API to login
   const data = await userApi.login(payload); //payload:thong tin nhap tren form
+  console.log(data);
   //save data to local storage
   localStorage.setItem(Storekeys.TOKEN, data.jwt); //token
   localStorage.setItem(Storekeys.USER, JSON.stringify(data.user)); // do user là 1 object nen phai dùng JSON.stringify(data.user)
@@ -30,7 +31,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     //Khởi tạo redux state từ localStorage
-    current: JSON.parse(localStorage.getItem(Storekeys.USER)) || {}, //thong tin cua thang login user
+    current: {}, //thong tin cua thang login user
     settings: {},
   }, //gia tri khoi tao
   reducers: {

@@ -1,7 +1,7 @@
-import { TextField } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Controller } from 'react-hook-form';
+import { TextField } from "@material-ui/core";
+import PropTypes from "prop-types";
+import React from "react";
+import { Controller } from "react-hook-form";
 
 InputField.propTypes = {
     form: PropTypes.object.isRequired, //bat buoc phai co
@@ -11,8 +11,7 @@ InputField.propTypes = {
     disabled: PropTypes.bool,
 };
 
-function InputField(props) {
-    const { form, name, label, disabled } = props;
+function InputField({ form, name, label, disabled }) {
     //Lấy thông tin error
     //Khi ma field da touch(co nghia la focus,chinh sua rui)rui thì nó tinh la touch
     const { errors } = form.formState;
@@ -34,7 +33,7 @@ function InputField(props) {
             //dung as thi ko can phai bind onChange, onblur, value,
             //con render thi phai truyen vao
             render={({ field }) => (
-                <TextField              //ban muon su dung UI Libery nào.bat buoc phai co
+                <TextField //ban muon su dung UI Libery nào.bat buoc phai co
                     {...field}
                     margin="normal"
                     variant="outlined"
@@ -47,7 +46,6 @@ function InputField(props) {
                 />
             )}
         />
-
     );
 }
 

@@ -37,7 +37,7 @@ LoginForm.propTypes = {
     onSubmit: PropTypes.func,
 };
 
-function LoginForm(props) {
+function LoginForm({ onSubmit }) {
     const classes = useStyles();
     const { defaultLanguage } = useContext(LanguageContext);
     const schema = yup.object().shape({
@@ -55,7 +55,6 @@ function LoginForm(props) {
 
     const handleSubmit = async (values) => {
         //console.log('TODO FORM: ', values);
-        const { onSubmit } = props;
         if (onSubmit) {
             await onSubmit(values);
         }

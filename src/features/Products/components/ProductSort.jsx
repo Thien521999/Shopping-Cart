@@ -12,6 +12,7 @@ ProductSort.propTypes = {
 function ProductSort({ currentSort, onChange = null }) {
     const { defaultLanguage } = useContext(LanguageContext);
     const handleSortChange = (e, newValue) => {
+        console.log(newValue);
         if (!onChange) return;
         onChange(newValue);
     }

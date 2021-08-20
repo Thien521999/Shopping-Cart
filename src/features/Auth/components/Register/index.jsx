@@ -10,7 +10,7 @@ Register.propTypes = {
     closeDialog: PropTypes.func,
 };
 
-function Register(props) {
+function Register({ closeDialog }) {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
 
@@ -30,10 +30,7 @@ function Register(props) {
             //sau khi dang ky xong có the lam tiep cac buoc nhu :dong cửa sổ ,hiển thị message success... có thể làm tiếp dưới này
 
             //close dialog khi dang ky thanh cong
-            const { closeDialog } = props;
-            if (closeDialog) {
-                closeDialog();
-            }
+            if (closeDialog) closeDialog();
 
             //show thong báo khi dang ky thanh cong
             enqueueSnackbar('Success register', { variant: 'success' });
